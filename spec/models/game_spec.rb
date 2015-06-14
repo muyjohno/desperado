@@ -58,4 +58,55 @@ RSpec.describe Game, type: :model do
       expect(game_with_associations.runner).to eq(runner_player)
     end
   end
+
+  describe "result" do
+    let(:corp) { create(:player) }
+    let(:runner) { create(:player) }
+    let(:game) { create(:game, runner: runner, corp: corp) }
+
+    context "corp win" do
+      before { game.result = :corp_win }
+
+      it "returns correct results" do
+        expect(game.player_result(corp)).to be(:win)
+        expect(game.player_result(runner)).to be(:loss)
+      end
+    end
+
+    context "runner win" do
+      before { game.result = :runner_win }
+
+      it "returns correct results" do
+        expect(game.player_result(corp)).to be(:loss)
+        expect(game.player_result(runner)).to be(:win)
+      end
+    end
+
+    context "corp time win" do
+      before { game.result = :corp_time_win }
+
+      it "returns correct results" do
+        expect(game.player_result(corp)).to be(:time_win)
+        expect(game.player_result(runner)).to be(:loss)
+      end
+    end
+
+    context "runner time win" do
+      before { game.result = :runner_time_win }
+
+      it "returns correct results" do
+        expect(game.player_result(corp)).to be(:loss)
+        expect(game.player_result(runner)).to be(:time_win)
+      end
+    end
+
+    context "tie" do
+      before { game.result = :tie }
+
+      it "returns correct results" do
+        expect(game.player_result(corp)).to be(:tie)
+        expect(game.player_result(runner)).to be(:tie)
+      end
+    end
+  end
 end

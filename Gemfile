@@ -8,6 +8,8 @@ gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
 gem "turbolinks"
 gem "bcrypt", "~> 3.1.7"
+gem "haml-rails", "~> 0.9"
+gem "bootstrap-sass"
 
 group :development, :test do
   gem "web-console", "~> 2.0"
@@ -16,4 +18,5 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "rubocop"
   gem "pry-rails"
+  gem "database_cleaner"
 end
