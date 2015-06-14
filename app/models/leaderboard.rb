@@ -1,7 +1,8 @@
 class Leaderboard
   attr_reader :rows
 
-  def initialize(games)
+  def initialize(games, ruleset)
+    @ruleset = ruleset
     @rows = {}
     games.each do |game|
       process_game(game)
@@ -24,6 +25,6 @@ class Leaderboard
   end
 
   def row(player)
-    @rows[player.id] ||= LeaderboardRow.new(player)
+    @rows[player.id] ||= LeaderboardRow.new(player, @ruleset)
   end
 end

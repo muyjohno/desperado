@@ -2,6 +2,7 @@ ENV["RAILS_ENV"] ||= "test"
 
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
+require "support/leaderboard_helper"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -29,4 +30,6 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.include LeaderboardHelper
 end
