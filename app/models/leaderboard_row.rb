@@ -4,13 +4,15 @@ class LeaderboardRow
   attr_accessor :position
   attr_reader :player, :points, :played, :corp_wins, :runner_wins
 
-  def initialize(player)
+  def initialize(player, ruleset)
     @position = 0
     @player = player
     @points = 0
     @played = 0
     @corp_wins = 0
     @runner_wins = 0
+
+    @ruleset = ruleset
   end
 
   def add_game(game)
@@ -21,8 +23,11 @@ class LeaderboardRow
   end
 
   def <=>(other)
-    points <=> other.points if points != other.points
-    0
+    @ruleset.compare(self, other)
+  end
+
+  def weak_side_wins
+    @corp_wins > @runner_wins ? @runner_wins : @corp_wins
   end
 
   private
