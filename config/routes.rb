@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "leaderboard#show"
-  get "login" => "sessions#new", as: :login
-  get "logout" => "sessions#destroy", as: :logout
-  resources :sessions, only: [:new, :create]
+  get "jack-in" => "sessions#new", as: :login
+  post "jack-in" => "sessions#create", as: :do_login
+  get "jack-out" => "sessions#destroy", as: :logout
 end

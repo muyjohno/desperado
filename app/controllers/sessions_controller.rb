@@ -6,15 +6,15 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:username], params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to root_path, notice: "Logged in!"
+      redirect_to root_path, notice: t(:login_success)
     else
-      flash.now.alert = "Invalid login"
+      flash.now.alert = t(:login_failure)
       render :new
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: "Logged out!"
+    redirect_to root_path, notice: t(:logout_success)
   end
 end
