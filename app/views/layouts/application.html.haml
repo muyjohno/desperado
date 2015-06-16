@@ -7,18 +7,17 @@
     = csrf_meta_tags
   %body
     .container
+      = render "layouts/navigation"
       .page-header
         %h1 Desperado
-      - if current_user
-        %ul.nav.nav-pills#user-nav
-          %li
-            %a{ href: logout_path } Log out
       - flash.each do |name, msg|
         = content_tag :p, msg, id: "flash#{name}", class: ["alert", "alert-warning"]
       = yield
     .panel.footer
-      %a{ href: "https://github.com/muyjohno/desperado" }
-        GitHub
-      |
-      %a{ href: login_path }
-        Login
+      Powered by
+      %a{ href: "https://github.com/muyjohno/desperado", target: "_blank" }
+        Desperado
+      - unless current_user
+        |
+        %a{ href: login_path }
+          = t(:log_in)

@@ -1,0 +1,25 @@
+%ul.nav.nav-pills
+  %li
+    %a{ href: root_path }
+      %span.glyphicon.glyphicon-home
+      = t(:home)
+  %li
+    %a{ href: "#" }
+      %span.glyphicon.glyphicon-tasks
+      Achievements
+  - if current_user
+    %li.dropdown
+      %a.dropdown-toggle{ "data-toggle" => :dropdown }
+        %span.glyphicon.glyphicon-certificate
+        Admin
+      %ul.dropdown-menu
+        %li
+          %span.glyphicon.glyphicon-user
+          Manage players
+        %li
+          %span.glyphicon.glyphicon-knight
+          Manage games
+    %li.navbar-right
+      %a{ href: logout_path }
+        %span.glyphicon.glyphicon-eject
+        = t(:log_out)
