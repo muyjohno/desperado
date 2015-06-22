@@ -11,12 +11,12 @@
     %li.dropdown
       %a.dropdown-toggle{ "data-toggle" => :dropdown }
         %span.glyphicon.glyphicon-certificate
-        Admin
+        = t(:admin)
       %ul.dropdown-menu
         %li
           %a{ href: players_path }
             %span.glyphicon.glyphicon-user
-            Manage players
+            = t(:manage_players)
         %li
           %span.glyphicon.glyphicon-knight
           Manage games

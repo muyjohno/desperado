@@ -8,8 +8,10 @@ en:
   logout_success: "Jacked out!"
 
   home: "Home"
+  admin: "Admin"
 
   players: "Players"
+  manage_player: "Manage players"
   player_name: "Name"
   add_player: "Add player"
   created_player: "Created player"
@@ -19,5 +21,6 @@ en:
   updated_player: "Updated player"
   update_player_failed: "Couldn't update player"
   delete_player: "Delete"
+  confirm_delete_player: "Deleting %{name}. Are you sure?"
   deleted_player: "Deleted player"
   delete_player_failed: "Couldn't delete player"
