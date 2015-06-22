@@ -1,0 +1,10 @@
+= form_for player do |f|
+  = f.label :name, t(:player_name)
+  = f.text_field :name
+  %br
+  = button_tag class: ["btn", "btn-success"] do
+    %span.glyphicon.glyphicon-pencil
+    = t(:save_player)
+  %a.btn.btn-danger{ href: players_path }
+    %span.glyphicon.glyphicon-remove
+    = t(:cancel)

@@ -1,7 +1,26 @@
 en:
+  cancel: "Cancel"
+
   log_in: "Jack in"
   login_success: "Jacked in!"
   login_failure: "Invalid"
   log_out: "Jack out"
   logout_success: "Jacked out!"
+
   home: "Home"
+  admin: "Admin"
+
+  players: "Players"
+  manage_player: "Manage players"
+  player_name: "Name"
+  add_player: "Add player"
+  created_player: "Created player"
+  create_player_failed: "Couldn't create player"
+  edit_player: "Edit"
+  save_player: "Save"
+  updated_player: "Updated player"
+  update_player_failed: "Couldn't update player"
+  delete_player: "Delete"
+  confirm_delete_player: "Deleting %{name}. Are you sure?"
+  deleted_player: "Deleted player"
+  delete_player_failed: "Couldn't delete player"
