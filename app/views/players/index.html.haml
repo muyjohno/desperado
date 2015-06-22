@@ -1,0 +1,22 @@
+%h2= t(:players)
+= form_for :player do |f|
+  = f.text_field :name
+  = button_tag class: ["btn", "btn-success"] do
+    %span.glyphicon.glyphicon-plus
+    = t(:add_player)
+%table.table
+  %tr
+    %th #
+    %th= t(:player_name)
+    %th
+  - @players.each do |player|
+    %tr
+      %td= player.id
+      %td= player.name
+      %td
+        = link_to edit_player_path(player), class: ["btn", "btn-default"] do
+          %span.glyphicon.glyphicon-pencil
+          = t(:edit_player)
+        = link_to player_path(player), method: :delete, class: ["btn", "btn-danger"], data: { confirm: "Deleting #{player.name}. Are you sure?" } do
+          %span.glyphicon.glyphicon-trash
+          = t(:delete_player)
