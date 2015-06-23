@@ -11,7 +11,7 @@ en:
   admin: "Admin"
 
   players: "Players"
-  manage_player: "Manage players"
+  manage_players: "Manage players"
   player_name: "Name"
   add_player: "Add player"
   created_player: "Created player"
