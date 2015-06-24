@@ -1,6 +1,14 @@
 en:
   cancel: "Cancel"
 
+  corp: "Corp"
+  runner: "Runner"
+  corp_win: "Corp win"
+  runner_win: "Runner win"
+  corp_time_win: "Corp time win"
+  runner_time_win: "Runner time win"
+  tie: "Tie"
+
   log_in: "Jack in"
   login_success: "Jacked in!"
   login_failure: "Invalid"
@@ -30,11 +38,6 @@ en:
   game_corp_player: "Corp player"
   game_runner_player: "Runner player"
   game_result: "Result"
-  corp_win: "Corp win"
-  runner_win: "Runner win"
-  corp_time_win: "Corp time win"
-  runner_time_win: "Runner time win"
-  tie: "Tie"
   add_game: "Add game"
   add_game_reverse_instruction: "Select a result to add reverse game at the same time"
   created_game: "Created game(s)"

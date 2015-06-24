@@ -6,11 +6,11 @@
       .form-group
         = f.label :corp_id, t(:game_corp_player), class: ["col-sm-2", "control-label"]
         .col-sm-10
-          %p.form-control-static#reverse_corp Hello
+          %p.form-control-static#reverse_corp= t(:runner)
       .form-group
         = f.label :corp_id, t(:game_runner_player), class: ["col-sm-2", "control-label"]
         .col-sm-10
-          %p.form-control-static#reverse_runner World
+          %p.form-control-static#reverse_runner t(:corp)
       .form-group
         = f.label :result, t(:game_result), class: ["col-sm-2", "control-label"]
         .col-sm-10
