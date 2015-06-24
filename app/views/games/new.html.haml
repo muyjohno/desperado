@@ -1,0 +1,17 @@
+%h2= t(:add_game)
+= render layout: "form", locals: { game: @game } do |f|
+  .panel.panel-default
+    .panel-heading= t(:add_game_reverse_instruction)
+    .panel-body
+      .form-group
+        = f.label :corp_id, t(:game_corp_player), class: ["col-sm-2", "control-label"]
+        .col-sm-10
+          %p.form-control-static#reverse_corp Hello
+      .form-group
+        = f.label :corp_id, t(:game_runner_player), class: ["col-sm-2", "control-label"]
+        .col-sm-10
+          %p.form-control-static#reverse_runner World
+      .form-group
+        = f.label :result, t(:game_result), class: ["col-sm-2", "control-label"]
+        .col-sm-10
+          = select_tag :reverse_result, options_for_select(result_options), include_blank: true, class: "form-control"
