@@ -1,0 +1,23 @@
+.row
+  = form_for game, html: { class: "form-horizontal" } do |f|
+    .form-group
+      = f.label :corp_id, t(:game_corp_player), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.collection_select :corp_id, Player.all, :id, :name, {}, class: "form-control"
+    .form-group
+      = f.label :corp_id, t(:game_runner_player), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.collection_select :runner_id, Player.all, :id, :name, {}, class: "form-control"
+    .form-group
+      = f.label :result, t(:game_result), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.select :result, result_options, {}, class: "form-control"
+    = yield f if block_given?
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = button_tag class: ["btn", "btn-success"] do
+          %span.glyphicon.glyphicon-pencil
+          = t(:save_game)
+        %a.btn.btn-danger{ href: games_path }
+          %span.glyphicon.glyphicon-remove
+          = t(:cancel)

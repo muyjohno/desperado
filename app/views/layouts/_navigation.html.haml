@@ -18,8 +18,9 @@
             %span.glyphicon.glyphicon-user
             = t(:manage_players)
         %li
-          %span.glyphicon.glyphicon-knight
-          Manage games
+          %a{ href: games_path }
+            %span.glyphicon.glyphicon-knight
+            = t(:manage_games)
     %li.navbar-right
       %a{ href: logout_path }
         %span.glyphicon.glyphicon-eject
