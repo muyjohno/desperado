@@ -9,9 +9,17 @@ class ApplicationController < ActionController::Base
     User.find(session[:user_id]) if session[:user_id]
   end
 
+  def leaderboard
+    Leaderboard.new(games, ruleset)
+  end
+
   private
 
   def ruleset
     @ruleset ||= Ruleset.new
+  end
+
+  def games
+    Game.all
   end
 end

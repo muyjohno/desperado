@@ -1,4 +1,42 @@
 RSpec.describe PlayersController, type: :controller do
+  describe "unrestricted actions" do
+    let(:player) { create(:player) }
+
+    describe "GET show" do
+      context "player with games" do
+        before do
+          create(:game, corp: player, runner: create(:player), result: :corp_win)
+          get :show, id: player.id
+        end
+
+        it "is successful" do
+          expect(response).to have_http_status(:ok)
+          expect(response).to render_template(:show)
+        end
+
+        it "assigns player correctly" do
+          expect(assigns(:player)).to eq(player)
+        end
+
+        it "assigns leaderboard row correctly" do
+          expect(assigns(:leaderboard_row)).to be_a(LeaderboardRow)
+          expect(assigns(:leaderboard_row).player).to eq(player)
+        end
+      end
+
+      context "player without games" do
+        let(:gameless_player) { create(:player) }
+
+        it "is successful" do
+          get :show, id: gameless_player.id
+
+          expect(response).to have_http_status(:ok)
+          expect(assigns(:leaderboard_row)).to eq(nil)
+        end
+      end
+    end
+  end
+
   context "authorised" do
     let(:player) { create(:player) }
 
