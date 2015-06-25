@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authorise
   before_action :find_game, only: [:edit, :update, :destroy]
 
   def index

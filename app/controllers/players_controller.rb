@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  before_action :authorise
   before_action :find_player, only: [:edit, :update, :destroy]
 
   def index
