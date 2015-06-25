@@ -1,7 +1,7 @@
 RSpec.describe PlayersController, type: :controller do
-  describe "unrestricted actions" do
-    let(:player) { create(:player) }
+  let(:player) { create(:player) }
 
+  describe "unrestricted actions" do
     describe "GET show" do
       context "player with games" do
         before do
@@ -38,8 +38,6 @@ RSpec.describe PlayersController, type: :controller do
   end
 
   context "authorised" do
-    let(:player) { create(:player) }
-
     before do
       allow_any_instance_of(ApplicationController).to receive(:authorise)
         .and_return(nil)

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  private
+
   def authorise
     redirect_to root_path, notice: t(:not_authorised) unless current_user
   end
@@ -12,8 +14,6 @@ class ApplicationController < ActionController::Base
   def leaderboard
     Leaderboard.new(games, ruleset)
   end
-
-  private
 
   def ruleset
     @ruleset ||= Ruleset.new
