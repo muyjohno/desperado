@@ -17,6 +17,13 @@ class Leaderboard
     end
   end
 
+  def row_for(player)
+    sorted_rows.each do |row|
+      return row if row.player == player
+    end
+    nil
+  end
+
   private
 
   def process_game(game)

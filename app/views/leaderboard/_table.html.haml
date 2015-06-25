@@ -1,0 +1,14 @@
+%table.table
+  %tr
+    %th Position
+    %th Name
+    %th Played
+    %th Wins (Corp/Runner)
+    %th Points
+  - rows.each do |row|
+    %tr
+      %td= row.position
+      %td= link_to row.player.name, player_path(row.player)
+      %td= row.played
+      %td= "#{row.corp_wins}/#{row.runner_wins}"
+      %td= row.points

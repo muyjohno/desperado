@@ -1,11 +1,5 @@
 class LeaderboardController < ApplicationController
   def show
-    @leaderboard = Leaderboard.new(games, ruleset).sorted_rows
-  end
-
-  private
-
-  def games
-    Game.all
+    @leaderboard = leaderboard.sorted_rows
   end
 end

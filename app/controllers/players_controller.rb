@@ -1,6 +1,10 @@
 class PlayersController < ApplicationController
-  before_action :authorise
-  before_action :find_player, only: [:edit, :update, :destroy]
+  before_action :authorise, except: :show
+  before_action :find_player, only: [:show, :edit, :update, :destroy]
+
+  def show
+    @leaderboard_row = leaderboard.row_for(@player)
+  end
 
   def index
     @players = Player.all
