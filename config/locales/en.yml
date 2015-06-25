@@ -14,6 +14,7 @@ en:
   login_failure: "Invalid"
   log_out: "Jack out"
   logout_success: "Jacked out!"
+  not_authorised: "Not authorised"
 
   home: "Home"
   admin: "Admin"

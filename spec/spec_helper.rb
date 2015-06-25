@@ -2,7 +2,7 @@ ENV["RAILS_ENV"] ||= "test"
 
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
-require "support/leaderboard_helper"
+Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
