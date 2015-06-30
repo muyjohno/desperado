@@ -1,0 +1,11 @@
+%h2= t(:achievements)
+.row
+  - @achievements.each do |achievement|
+    .col-md-4
+      .panel.panel-default
+        .panel-heading=achievement.title
+        .panel-body
+          =t(achievement.side)
+          ="(#{pluralize(achievement.points, "point")})"
+          %br
+          =achievement.description

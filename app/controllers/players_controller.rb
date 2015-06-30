@@ -1,8 +1,8 @@
 class PlayersController < ApplicationController
   before_action :authorise, except: :show
-  before_action :find_player, only: [:show, :edit, :update, :destroy]
 
   def show
+    @player = find_player
     @leaderboard_row = leaderboard.row_for(@player)
   end
 
@@ -18,9 +18,11 @@ class PlayersController < ApplicationController
   end
 
   def edit
+    @player = find_player
   end
 
   def update
+    @player = find_player
     if @player.update_attributes(player_params)
       redirect_to players_path, notice: t(:updated_player)
     else
@@ -30,6 +32,7 @@ class PlayersController < ApplicationController
   end
 
   def destroy
+    @player = find_player
     redirect_to players_path,
       notice: @player.destroy ? t(:deleted_player) : t(:delete_player_failed)
   end
@@ -41,6 +44,6 @@ class PlayersController < ApplicationController
   end
 
   def find_player
-    @player = Player.find(params[:id])
+    Player.find(params[:id])
   end
 end
