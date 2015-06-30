@@ -5,6 +5,10 @@ class AchievementsController < ApplicationController
     @achievements = Achievement.all
   end
 
+  def manage
+    @achievements = Achievement.all
+  end
+
   def new
     @achievement = Achievement.new
   end

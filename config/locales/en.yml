@@ -53,6 +53,7 @@ en:
   delete_game_failed: "Couldn't delete game"
 
   achievements: "Achievements"
+  manage_achievements: "Manage achievements"
   achievement_title: "Title"
   achievement_description: "Description"
   achievement_points: "Points"

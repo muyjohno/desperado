@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :achievements, except: :show
+  resources :achievements, except: :show do
+    collection do
+      get :manage
+    end
+  end
   resources :games, except: :show
   resources :players, except: :new
   root "leaderboard#show"
