@@ -26,6 +26,24 @@ RSpec.describe AchievementsController, type: :controller do
         .and_return(nil)
     end
 
+    describe "GET manage" do
+      before do
+        get :manage
+      end
+
+      it "is successful" do
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:manage)
+      end
+
+      it "assigns achievements correctly" do
+        expect(assigns(:achievements)).to be_a(ActiveRecord::Relation)
+        assigns(:achievements).each do |row|
+          expect(row).to be_a(Achievement)
+        end
+      end
+    end
+
     describe "GET new" do
       before do
         get :new
@@ -36,7 +54,7 @@ RSpec.describe AchievementsController, type: :controller do
         expect(response).to render_template(:new)
       end
 
-      it "assigns achievements correctly" do
+      it "assigns achievement correctly" do
         expect(assigns(:achievement)).to be_a(Achievement)
       end
     end
@@ -116,6 +134,12 @@ RSpec.describe AchievementsController, type: :controller do
   end
 
   context "not authorised" do
+    describe "GET manage" do
+      it_behaves_like "a restricted controller" do
+        let(:go) { get :manage }
+      end
+    end
+
     describe "GET new" do
       it_behaves_like "a restricted controller" do
         let(:go) { get :new }
