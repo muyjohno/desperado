@@ -1,0 +1,26 @@
+.row
+  = form_for achievement, html: { class: "form-horizontal" } do |f|
+    .form-group
+      = f.label :title, t(:achievement_title), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.text_field :title, class: "form-control"
+    .form-group
+      = f.label :description, t(:achievement_description), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.text_area :description, class: "form-control"
+    .form-group
+      = f.label :points, t(:achievement_points), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.text_field :points, class: "form-control"
+    .form-group
+      = f.label :side, t(:achievement_side), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.select :side, side_options, {}, class: "form-control"
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = button_tag class: ["btn", "btn-success"] do
+          %span.glyphicon.glyphicon-pencil
+          = t(:save_achievement)
+        %a.btn.btn-danger{ href: achievements_path }
+          %span.glyphicon.glyphicon-remove
+          = t(:cancel)

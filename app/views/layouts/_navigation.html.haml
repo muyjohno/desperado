@@ -1,12 +1,12 @@
 %ul.nav.nav-pills
   %li
-    %a{ href: root_path }
+    = link_to root_path do
       %span.glyphicon.glyphicon-home
       = t(:home)
   %li
-    %a{ href: "#" }
+    = link_to achievements_path do
       %span.glyphicon.glyphicon-tasks
-      Achievements
+      = t(:achievements)
   - if current_user
     %li.dropdown
       %a.dropdown-toggle{ "data-toggle" => :dropdown }
@@ -14,14 +14,14 @@
         = t(:admin)
       %ul.dropdown-menu
         %li
-          %a{ href: players_path }
+          = link_to players_path do
             %span.glyphicon.glyphicon-user
             = t(:manage_players)
         %li
-          %a{ href: games_path }
+          = link_to games_path do
             %span.glyphicon.glyphicon-knight
             = t(:manage_games)
     %li.navbar-right
-      %a{ href: logout_path }
+      = link_to logout_path do
         %span.glyphicon.glyphicon-eject
         = t(:log_out)

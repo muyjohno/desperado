@@ -1,0 +1,27 @@
+%h2= t(:achievements)
+- if current_user
+  = link_to new_achievement_path, class: ["btn", "btn-success"] do
+    %span.glyphicon.glyphicon-plus
+    =t(:add_achievement)
+%table.table.achievements
+  %tr
+    %th #
+    %th= t(:achievement_title)
+    %th= t(:achievement_side)
+    %th= t(:achievement_points)
+    - if current_user
+      %th
+  - @achievements.each do |achievement|
+    %tr
+      %td= achievement.id
+      %td= achievement.title
+      %td= t(achievement.side)
+      %td= achievement.points
+      - if current_user
+        %td
+          = link_to edit_achievement_path(achievement), class: ["btn", "btn-default"] do
+            %span.glyphicon.glyphicon-pencil
+            = t(:edit_achievement)
+          = link_to achievement_path(achievement), method: :delete, class: ["btn", "btn-danger"], data: { confirm: t(:confirm_delete_achievement, title: achievement.title) } do
+            %span.glyphicon.glyphicon-trash
+            = t(:delete_achievement)

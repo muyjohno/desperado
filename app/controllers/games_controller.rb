@@ -1,6 +1,5 @@
 class GamesController < ApplicationController
   before_action :authorise
-  before_action :find_game, only: [:edit, :update, :destroy]
 
   def index
     @games = Game.all
@@ -19,9 +18,11 @@ class GamesController < ApplicationController
   end
 
   def edit
+    @game = find_game
   end
 
   def update
+    @game = find_game
     if @game.update_attributes(game_params)
       redirect_to games_path, notice: t(:updated_game)
     else
@@ -31,6 +32,7 @@ class GamesController < ApplicationController
   end
 
   def destroy
+    @game = find_game
     redirect_to games_path,
       notice: @game.destroy ? t(:deleted_game) : t(:delete_game_failed)
   end
@@ -49,6 +51,6 @@ class GamesController < ApplicationController
   end
 
   def find_game
-    @game = Game.find(params[:id])
+    Game.find(params[:id])
   end
 end
