@@ -5,6 +5,9 @@ class Game < ActiveRecord::Base
   belongs_to :corp, class_name: "Player"
   belongs_to :runner, class_name: "Player"
 
+  has_many :earned_achievements
+  has_many :achievements, through: :earned_achievements
+
   enum result: %w(corp_win runner_win corp_time_win runner_time_win tie)
 
   def player_result(player)

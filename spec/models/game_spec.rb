@@ -109,4 +109,28 @@ RSpec.describe Game, type: :model do
       end
     end
   end
+
+  describe "achievement associations" do
+    let(:achievement) { create(:achievement, side: :corp) }
+    let(:earned_achievement) do
+      create(
+        :earned_achievement,
+        game: subject,
+        achievement: achievement,
+        player: subject.corp
+      )
+    end
+
+    before { earned_achievement }
+
+    it "returns earned_achievement" do
+      expect(subject.earned_achievements.count).to eq(1)
+      expect(subject.earned_achievements.first).to eq(earned_achievement)
+    end
+
+    it "returns achievement" do
+      expect(subject.achievements.count).to eq(1)
+      expect(subject.achievements.first).to eq(achievement)
+    end
+  end
 end
