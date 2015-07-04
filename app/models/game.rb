@@ -29,6 +29,13 @@ class Game < ActiveRecord::Base
     player == corp ? :corp : :runner
   end
 
+  def add_achievement(achievement)
+    earned_achievements << EarnedAchievement.new(
+      achievement: achievement,
+      player: send(achievement.side)
+    )
+  end
+
   private
 
   def cannot_play_self
