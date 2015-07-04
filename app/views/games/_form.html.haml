@@ -1,5 +1,5 @@
 .row
-  = form_for game, html: { class: "form-horizontal" } do |f|
+  = form_for game, html: { class: ["form-horizontal", "game_form"] } do |f|
     .form-group
       = f.label :corp_id, t(:game_corp_player), class: ["col-sm-2", "control-label"]
       .col-sm-10
