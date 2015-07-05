@@ -109,4 +109,66 @@ RSpec.describe Game, type: :model do
       end
     end
   end
+
+  describe "achievement associations" do
+    let(:achievement) { create(:achievement, side: :corp) }
+    let!(:earned_achievement) do
+      create(
+        :earned_achievement,
+        game: subject,
+        achievement: achievement,
+        player: subject.corp
+      )
+    end
+
+    it "returns earned_achievement" do
+      expect(subject.earned_achievements.count).to eq(1)
+      expect(subject.earned_achievements.first).to eq(earned_achievement)
+    end
+
+    it "returns achievement" do
+      expect(subject.achievements.count).to eq(1)
+      expect(subject.achievements.first).to eq(achievement)
+    end
+  end
+
+  describe "#add_achievement" do
+    let(:achievement) { create(:achievement, side: :corp) }
+
+    it "adds achievement to game" do
+      expect do
+        subject.add_achievement(achievement)
+      end.to change { subject.earned_achievements.count }.by(1)
+
+      expect(subject.earned_achievements.first.achievement).to eq(achievement)
+      expect(subject.earned_achievements.first.player).to eq(subject.corp)
+      expect(subject.earned_achievements.first.game).to eq(subject)
+    end
+  end
+
+  describe "#remove_achievement" do
+    let(:earned_achievement) { create_earned_achievement }
+
+    it "removes achievement from game" do
+      expect do
+        earned_achievement.game
+          .remove_achievement(earned_achievement.achievement)
+      end.to change { earned_achievement.game.earned_achievements.count }.by(-1)
+
+      expect(EarnedAchievement.where(
+        achievement: earned_achievement.achievement,
+        game: earned_achievement.game
+      ).count).to eq(0)
+    end
+  end
+
+  describe "dependence" do
+    let!(:earned) { create_earned_achievement }
+
+    it "earned achievement is deleted" do
+      expect do
+        earned.game.destroy
+      end.to change(EarnedAchievement, :count).by(-1)
+    end
+  end
 end

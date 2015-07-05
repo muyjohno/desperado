@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630134959) do
+ActiveRecord::Schema.define(version: 20150701195437) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "title"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20150630134959) do
     t.integer  "side"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "earned_achievements", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "game_id"
+    t.integer  "achievement_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "games", force: :cascade do |t|

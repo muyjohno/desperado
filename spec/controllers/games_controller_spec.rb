@@ -34,7 +34,7 @@ RSpec.describe GamesController, type: :controller do
             post :create,
               game: { corp_id: player1.id, runner_id: player2.id, result: :corp_win },
               reverse_result: :corp_win
-          end.to change{ Game.count }.by(2)
+          end.to change(Game, :count).by(2)
 
           expect(response).to have_http_status(:redirect)
           expect(flash[:notice]).to eq(I18n.t(:created_game))
@@ -45,10 +45,29 @@ RSpec.describe GamesController, type: :controller do
             post :create,
               game: { corp_id: player1.id, runner_id: player1.id, result: :corp_win },
               reverse_result: :corp_win
-          end.to change{ Game.count }.by(0)
+          end.to change(Game, :count).by(0)
 
           expect(response).to have_http_status(:redirect)
           expect(flash[:notice]).to eq(I18n.t(:create_game_failed))
+        end
+
+        it "creates reverse achievements" do
+          achievement = create(:achievement, side: :corp)
+          expect do
+            post :create,
+              game: {
+                corp_id: player1.id,
+                runner_id: player2.id,
+                result: :corp_win
+              },
+              reverse_result: :corp_win,
+              reverse_achievements: {
+                achievement.id.to_s => "1"
+              }
+          end.to change(EarnedAchievement, :count).by(1)
+
+          expect(EarnedAchievement.last.achievement).to eq(achievement)
+          expect(EarnedAchievement.last.player).to eq(player2)
         end
       end
 
@@ -56,8 +75,9 @@ RSpec.describe GamesController, type: :controller do
         it "is successful" do
           expect do
             post :create,
-              game: { corp_id: player1.id, runner_id: player2.id, result: :corp_win }
-          end.to change{ Game.count }.by(1)
+              game: { corp_id: player1.id, runner_id: player2.id, result: :corp_win },
+              reverse_result: ""
+          end.to change(Game, :count).by(1)
 
           expect(response).to have_http_status(:redirect)
           expect(flash[:notice]).to eq(I18n.t(:created_game))
@@ -67,10 +87,28 @@ RSpec.describe GamesController, type: :controller do
           expect do
             post :create,
               game: { corp_id: player1.id, runner_id: player1.id, result: :corp_win }
-          end.to change{ Game.count }.by(0)
+          end.to change(Game, :count).by(0)
 
           expect(response).to have_http_status(:redirect)
           expect(flash[:notice]).to eq(I18n.t(:create_game_failed))
+        end
+
+        it "creates achievements" do
+          achievement = create(:achievement, side: :corp)
+          expect do
+            post :create,
+              game: {
+                corp_id: player1.id,
+                runner_id: player2.id,
+                result: :corp_win
+              },
+              achievements: {
+                achievement.id.to_s => "1"
+              }
+          end.to change(EarnedAchievement, :count).by(1)
+
+          expect(EarnedAchievement.last.achievement).to eq(achievement)
+          expect(EarnedAchievement.last.player).to eq(player1)
         end
       end
     end
@@ -111,6 +149,35 @@ RSpec.describe GamesController, type: :controller do
         expect(response).to have_http_status(:ok)
         expect(response).to render_template(:edit)
         expect(flash[:alert]).to eq(I18n.t(:update_game_failed))
+      end
+
+      it "creates achievements" do
+        achievement = create(:achievement, side: :corp)
+        expect do
+          post :update,
+            id: game.id,
+            game: { result: game.result },
+            achievements: {
+              achievement.id.to_s => "1"
+            }
+        end.to change(EarnedAchievement, :count).by(1)
+
+        expect(EarnedAchievement.last.achievement).to eq(achievement)
+        expect(EarnedAchievement.last.player).to eq(game.corp)
+        expect(EarnedAchievement.last.game).to eq(game)
+      end
+
+      it "delete achievements" do
+        achievement = create(:achievement, side: :corp)
+        game.add_achievement(achievement)
+        expect do
+          post :update,
+            id: game.id,
+            game: { result: game.result },
+            achievements: {
+              achievement.id.to_s => "0"
+            }
+        end.to change(EarnedAchievement, :count).by(-1)
       end
     end
 

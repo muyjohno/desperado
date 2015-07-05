@@ -1,0 +1,6 @@
+- key ||= :achievements
+.form-group
+  .checkbox
+    %label
+      = check_box key, ach.id, checked: game.achievement?(ach)
+      = ach.title

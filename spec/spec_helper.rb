@@ -32,4 +32,5 @@ RSpec.configure do |config|
   end
 
   config.include LeaderboardHelper
+  config.include AchievementHelper
 end

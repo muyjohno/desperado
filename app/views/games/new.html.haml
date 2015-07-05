@@ -6,12 +6,29 @@
       .form-group
         = f.label :corp_id, t(:game_corp_player), class: ["col-sm-2", "control-label"]
         .col-sm-10
-          %p.form-control-static#reverse_corp= t(:runner)
+          %p.form-control-static.game_runner_name= t(:runner)
       .form-group
         = f.label :corp_id, t(:game_runner_player), class: ["col-sm-2", "control-label"]
         .col-sm-10
-          %p.form-control-static#reverse_runner t(:corp)
+          %p.form-control-static.game_corp_name= t(:corp)
       .form-group
         = f.label :result, t(:game_result), class: ["col-sm-2", "control-label"]
         .col-sm-10
           = select_tag :reverse_result, options_for_select(result_options), include_blank: true, class: "form-control"
+  .panel.panel-default
+    .panel-heading= t(:achievements)
+    .panel-body
+      .col-sm-6
+        %h4
+          %span.game_runner_name
+          = "(#{t(:corp)})"
+        .corp_achievements
+        - corp_achievements.each do |ach|
+          = render "achievement_field", ach: ach, game: @game, key: :reverse_achievements
+      .col-sm-6
+        %h4
+          %span.game_corp_name
+          = "(#{t(:runner)})"
+        .runner_achievements
+        - runner_achievements.each do |ach|
+          = render "achievement_field", ach: ach, game: @game, key: :reverse_achievements
