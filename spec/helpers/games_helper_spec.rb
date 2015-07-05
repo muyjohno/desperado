@@ -13,12 +13,12 @@ RSpec.describe GamesHelper, type: :helper do
     let!(:corp_achievement) { create(:achievement, side: :corp) }
     let!(:runner_achievement) { create(:achievement, side: :runner) }
 
-    describe "#corp_achievement" do
+    describe "#corp_achievements" do
       it { expect(helper.corp_achievements).to include(corp_achievement) }
       it { expect(helper.corp_achievements).not_to include(runner_achievement) }
     end
 
-    describe "#corp_achievement" do
+    describe "#runner_achievements" do
       it { expect(helper.runner_achievements).to include(runner_achievement) }
       it { expect(helper.runner_achievements).not_to include(corp_achievement) }
     end

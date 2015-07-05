@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
   belongs_to :corp, class_name: "Player"
   belongs_to :runner, class_name: "Player"
 
-  has_many :earned_achievements
+  has_many :earned_achievements, dependent: :destroy
   has_many :achievements, through: :earned_achievements
 
   enum result: %w(corp_win runner_win corp_time_win runner_time_win tie)
@@ -34,6 +34,14 @@ class Game < ActiveRecord::Base
       achievement: achievement,
       player: send(achievement.side)
     )
+  end
+
+  def remove_achievement(achievement)
+    earned_achievements.where(achievement: achievement).destroy_all
+  end
+
+  def achievement?(achievement)
+    earned_achievements.where(achievement: achievement).count > 0
   end
 
   private

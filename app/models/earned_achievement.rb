@@ -4,6 +4,7 @@ class EarnedAchievement < ActiveRecord::Base
   belongs_to :achievement
 
   validates :player, :game, :achievement, presence: true
+  validates :achievement, uniqueness: { scope: :player }
   validate :integrity?
 
   private

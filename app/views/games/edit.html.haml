@@ -1,19 +1,2 @@
 %h2= t(:edit_game)
-= render layout: "form", locals: { game: @game } do |f|
-  .panel.panel-default
-    .panel-heading= t(:achievements)
-    .panel-body
-      .col-sm-6
-        %h4
-          %span.game_corp_name
-          = "(#{t(:corp)})"
-        .corp_achievements
-        - corp_achievements.each do |ach|
-          = render "achievement_field", ach: ach
-      .col-sm-6
-        %h4
-          %span.game_runner_name
-          = "(#{t(:runner)})"
-        .runner_achievements
-        - runner_achievements.each do |ach|
-          = render "achievement_field", ach: ach
+= render "form", game: @game

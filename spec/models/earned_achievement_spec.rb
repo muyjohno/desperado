@@ -1,15 +1,5 @@
 RSpec.describe EarnedAchievement, type: :model do
-  let(:player) { create(:player) }
-  let(:achievement) { create(:achievement, side: :corp) }
-  let(:game) { create(:game, corp: player) }
-  let(:subject) do
-    create(
-      :earned_achievement,
-      player: player,
-      game: game,
-      achievement: achievement
-    )
-  end
+  let!(:subject) { create_earned_achievement }
 
   context "when valid" do
     it do
@@ -48,6 +38,18 @@ RSpec.describe EarnedAchievement, type: :model do
 
         expect(subject).not_to be_valid
       end
+    end
+
+    context "duplicate" do
+      let(:duplicate) do
+        EarnedAchievement.new(
+          player: subject.player,
+          achievement: subject.achievement,
+          game: subject.game
+        )
+      end
+
+      it { expect(duplicate).not_to be_valid }
     end
   end
 end

@@ -4,7 +4,7 @@ class Player < ActiveRecord::Base
   has_many :corp_games, class_name: "Game", foreign_key: :corp_id
   has_many :runner_games, class_name: "Game", foreign_key: :runner_id
 
-  has_many :earned_achievements
+  has_many :earned_achievements, dependent: :destroy
   has_many :achievements, through: :earned_achievements
 
   def games

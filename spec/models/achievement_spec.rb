@@ -63,4 +63,14 @@ RSpec.describe Achievement, type: :model do
       expect(subject.earners.first).to eq(player)
     end
   end
+
+  describe "dependence" do
+    let!(:earned) { create_earned_achievement }
+
+    it "earned achievement is deleted" do
+      expect do
+        earned.achievement.destroy
+      end.to change(EarnedAchievement, :count).by(-1)
+    end
+  end
 end

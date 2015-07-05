@@ -10,8 +10,8 @@ class GamesController < ApplicationController
   end
 
   def create
-    success = Game.new(game_params).save
-    success &= Game.new(reverse_params).save if reverse_params[:result]
+    success = handle_game
+    success &= handle_reverse unless reverse_params[:result].blank?
 
     redirect_to games_path,
       notice: success ? t(:created_game) : t(:create_game_failed)
@@ -23,7 +23,7 @@ class GamesController < ApplicationController
 
   def update
     @game = find_game
-    if @game.update_attributes(game_params)
+    if @game.update_attributes(game_params) && update_achievements
       redirect_to games_path, notice: t(:updated_game)
     else
       flash.now.alert = t(:update_game_failed)
@@ -38,6 +38,28 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def handle_game(params = game_params, key = :achievements)
+    game = Game.new(params)
+    game.save && update_achievements(game, key)
+  end
+
+  def handle_reverse
+    handle_game(reverse_params, :reverse_achievements)
+  end
+
+  def update_achievements(game = @game, key = :achievements)
+    return true unless params[key]
+
+    params[key].each do |id, earned|
+      if earned == "1"
+        game.add_achievement(Achievement.find(id))
+      else
+        game.remove_achievement(Achievement.find(id))
+      end
+    end
+    true
+  end
 
   def game_params
     params.require(:game).permit(:corp_id, :runner_id, :result)
