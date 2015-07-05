@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Desperado
+    %title= @league.display_name
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -9,7 +9,7 @@
     .container
       = render "layouts/navigation"
       .page-header
-        %h1 Desperado
+        %h1= @league.display_name
       - flash.each do |name, msg|
         %p{ id: "flash#{name}", class: ["alert", "alert-warning", "alert-dismissible"] }
           = msg

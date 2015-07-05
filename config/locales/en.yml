@@ -69,3 +69,9 @@ en:
   confirm_delete_achievement: "Deleting %{title}. Are you sure?"
   deleted_achievement: "Deleted achievement"
   delete_achievement_failed: "Couldn't delete achievement"
+
+  league_name: "Name"
+  edit_league: "Edit league"
+  save_league: "Save"
+  updated_league: "Updated league"
+  update_league_failed: "Couldn't update league"

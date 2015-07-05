@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :league
 
   private
 
@@ -21,5 +22,9 @@ class ApplicationController < ActionController::Base
 
   def games
     Game.all
+  end
+
+  def league
+    @league ||= League.current
   end
 end
