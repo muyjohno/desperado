@@ -7,6 +7,10 @@ class Ruleset
     0
   end
 
+  def points_for_result(result)
+    Rules::PointFactory.points_for_result(result)
+  end
+
   private
 
   def rankers

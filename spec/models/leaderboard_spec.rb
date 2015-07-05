@@ -9,6 +9,10 @@ RSpec.describe Leaderboard, type: :model do
   end
 
   context "row" do
+    before do
+      create(:rule, key: :points_for_win, value: 2)
+    end
+
     let(:row) { leaderboard.rows[common_player.id] }
 
     describe("#played") { it { expect(row.played).to be(2) } }
