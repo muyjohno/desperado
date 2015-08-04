@@ -1,7 +1,7 @@
 module Rules
   class PointFactory
     def self.points_for_result(result)
-      "Rules::PointsFor#{result.to_s.camelize}".constantize.value
+      Rule.value_for("points_for_#{result}") || 0
     end
   end
 end
