@@ -8,7 +8,7 @@ class Ruleset
   end
 
   def points_for_result(result)
-    Rules::PointFactory.points_for_result(result)
+    Rule.value_for("points_for_#{result}") || 0
   end
 
   private

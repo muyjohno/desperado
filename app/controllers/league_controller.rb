@@ -13,6 +13,7 @@ class LeagueController < ApplicationController
       redirect_to edit_league_path, notice: t(:updated_league)
     else
       flash.now.alert = t(:update_league_failed)
+      @rules = @league.all_rules
       render :edit
     end
   end
@@ -20,7 +21,7 @@ class LeagueController < ApplicationController
   private
 
   def league_params
-    params.require(:league).permit(:name, rules_attributes: [:key, :value])
+    params.require(:league).permit(:name)
   end
 
   def rules_params
