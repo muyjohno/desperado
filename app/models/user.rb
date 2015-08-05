@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   validates_presence_of :password, on: :create
   validates_presence_of :username
   validates_uniqueness_of :username
+  validates_presence_of :password_confirmation, if: :password
+  validates_confirmation_of :password, if: :password
 
   def encrypt_password(password, salt)
     BCrypt::Engine.hash_secret(password, salt)
