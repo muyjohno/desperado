@@ -1,0 +1,18 @@
+.row
+  = form_for user, html: { class: "form-horizontal" }, url: update_password_path do |f|
+    .form-group
+      = f.label :password, t(:password), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.password_field :password, class: "form-control"
+    .form-group
+      = f.label :password_confirmation, t(:password_confirmation), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.password_field :password_confirmation, class: "form-control"
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = button_tag class: ["btn", "btn-success"] do
+          %span.glyphicon.glyphicon-pencil
+          = t(:save_password)
+        %a.btn.btn-danger{ href: players_path }
+          %span.glyphicon.glyphicon-remove
+          = t(:cancel)

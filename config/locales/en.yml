@@ -75,3 +75,10 @@ en:
   save_league: "Save"
   updated_league: "Updated league"
   update_league_failed: "Couldn't update league"
+
+  change_password: "Change password"
+  password: "Password"
+  password_confirmation: "Password confirmation"
+  save_password: "Save password"
+  updated_password: "Updated password"
+  update_password_failed: "Update password failed"
