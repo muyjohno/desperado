@@ -37,4 +37,13 @@ RSpec.describe League, type: :model do
       expect(league.display_name).to eq("Desperado")
     end
   end
+
+  describe "#all_rules" do
+    let(:league) { League.current }
+
+    it "returns stubbed rules" do
+      expect(league.all_rules.length).to eq(Rule::KEYS.length)
+      expect(league.all_rules.first.key).to eq("points_for_win")
+    end
+  end
 end

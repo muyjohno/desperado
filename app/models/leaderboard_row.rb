@@ -4,6 +4,8 @@ class LeaderboardRow
   attr_accessor :position
   attr_reader :player, :points, :played, :corp_wins, :runner_wins
 
+  delegate :points_for_result, to: :@ruleset
+
   def initialize(player, ruleset)
     @position = 0
     @player = player
@@ -42,11 +44,5 @@ class LeaderboardRow
 
   def result(game)
     game.player_result(@player)
-  end
-
-  def points_for_result(result)
-    return 2 if result == :win
-    return 1 if result == :time_win || result == :tie
-    0
   end
 end

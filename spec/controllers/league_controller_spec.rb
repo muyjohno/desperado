@@ -15,7 +15,7 @@ RSpec.describe LeagueController, type: :controller do
         expect(response).to render_template(:edit)
       end
 
-      it "assigns game" do
+      it "assigns league" do
         expect(assigns(:league)).to eq(League.current)
       end
     end
@@ -28,11 +28,19 @@ RSpec.describe LeagueController, type: :controller do
         expect(flash[:notice]).to eq(I18n.t(:updated_league))
       end
 
-      it "updates achievement" do
+      it "updates league" do
         expect_any_instance_of(League).to receive(:update_attributes)
           .with("name" => "Test")
 
         post :update, league: { name: "Test" }
+      end
+
+      it "updates rules" do
+        post :update,
+          league: { name: "" },
+          rules: { "points_for_tie" => "99" }
+
+        expect(Rule.rule_for(:points_for_tie).value).to eq(99)
       end
     end
   end
