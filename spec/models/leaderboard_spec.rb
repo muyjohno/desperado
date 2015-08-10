@@ -20,6 +20,20 @@ RSpec.describe Leaderboard, type: :model do
     describe("#runner_wins") { it { expect(row.runner_wins).to be(1) } }
     describe("#points") { it { expect(row.points).to be(4) } }
     describe("#weak_side_wins") { it { expect(row.weak_side_wins).to be(1) } }
+
+    context "with achievement" do
+      let(:achievement) { create(:achievement, side: :corp, points: 3) }
+      let!(:ea) do
+        create(
+          :earned_achievement,
+          player: common_player,
+          game: game1,
+          achievement: achievement
+        )
+      end
+
+      describe("#points") { it { expect(row.points).to eq(7) } }
+    end
   end
 
   describe "#sorted_rows" do
