@@ -22,6 +22,7 @@ class LeaderboardRow
     @corp_wins += 1 if corp?(game) && result(game) == :win
     @runner_wins += 1 if runner?(game) && result(game) == :win
     @points += points_for_result(result(game))
+    @points += game.points_for_achievements(@player)
   end
 
   def <=>(other)

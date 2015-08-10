@@ -44,6 +44,12 @@ class Game < ActiveRecord::Base
     earned_achievements.where(achievement: achievement).count > 0
   end
 
+  def points_for_achievements(player)
+    earned_achievements.where(player: player).inject(0) do |sum, ea|
+      sum + ea.achievement.points
+    end
+  end
+
   private
 
   def cannot_play_self

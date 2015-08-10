@@ -171,4 +171,27 @@ RSpec.describe Game, type: :model do
       end.to change(EarnedAchievement, :count).by(-1)
     end
   end
+
+  describe "#points_for_achievements" do
+    let(:jim) { create(:player) }
+    let(:bob) { create(:player) }
+    let(:game) { create(:game, corp: jim, runner: bob) }
+    let(:ach1) { create(:achievement, side: :corp, points: 2) }
+    let(:ach2) { create(:achievement, side: :runner, points: 1) }
+    let(:ach3) { create(:achievement, side: :corp, points: 3) }
+    let!(:ea1) do
+      create(:earned_achievement, achievement: ach1, player: jim, game: game)
+    end
+    let!(:ea2) do
+      create(:earned_achievement, achievement: ach2, player: bob, game: game)
+    end
+    let!(:ea3) do
+      create(:earned_achievement, achievement: ach3, player: jim, game: game)
+    end
+
+    it "returns total of earned achievements" do
+      expect(game.points_for_achievements(jim)).to eq(5)
+      expect(game.points_for_achievements(bob)).to eq(1)
+    end
+  end
 end
