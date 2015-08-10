@@ -1,4 +1,0 @@
-== Desperado
-
-*Desperado* is a framework for league software for Android: Netrunner
-using Ruby on Rails
