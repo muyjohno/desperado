@@ -4,6 +4,7 @@ class PlayersController < ApplicationController
   def show
     @player = find_player
     @leaderboard_row = leaderboard.row_for(@player)
+    @achievements = Achievement.all
   end
 
   def index

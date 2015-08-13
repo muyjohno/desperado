@@ -10,4 +10,8 @@ class Player < ActiveRecord::Base
   def games
     Game.where("corp_id = ? OR runner_id = ?", id, id)
   end
+
+  def earned?(ach)
+    achievements.include?(ach)
+  end
 end
