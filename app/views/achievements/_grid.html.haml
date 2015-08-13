@@ -1,0 +1,11 @@
+- player ||= nil
+.row
+  - achievements.each do |achievement|
+    .col-md-4
+      .panel.panel-default{class: achievement_class(achievement, player)}
+        .panel-heading=achievement.title
+        .panel-body
+          =t(achievement.side)
+          ="(#{pluralize(achievement.points, "point")})"
+          %br
+          =achievement.description

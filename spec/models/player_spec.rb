@@ -77,4 +77,15 @@ RSpec.describe Player, type: :model do
       end.to change(EarnedAchievement, :count).by(-1)
     end
   end
+
+  describe "#earned?" do
+    let(:earned) { create_earned_achievement }
+    let(:unearned) { create(:achievement) }
+    let(:player) { earned.player }
+
+    it "returns correct values" do
+      expect(player.earned?(earned.achievement)).to eq(true)
+      expect(player.earned?(unearned)).to eq(false)
+    end
+  end
 end

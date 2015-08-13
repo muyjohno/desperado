@@ -4,6 +4,8 @@ RSpec.describe PlayersController, type: :controller do
   describe "unrestricted actions" do
     describe "GET show" do
       context "player with games" do
+        let!(:ach) { create(:achievement) }
+
         before do
           create(:game, corp: player, runner: create(:player), result: :corp_win)
           get :show, id: player.id
@@ -21,6 +23,11 @@ RSpec.describe PlayersController, type: :controller do
         it "assigns leaderboard row correctly" do
           expect(assigns(:leaderboard_row)).to be_a(LeaderboardRow)
           expect(assigns(:leaderboard_row).player).to eq(player)
+        end
+
+        it "assigns achievements correctly" do
+          expect(assigns(:achievements).count).to eq(1)
+          expect(assigns(:achievements)).to include(ach)
         end
       end
 
