@@ -4,3 +4,15 @@ table.games
 
   td.time_win, td.tie
     font-style: italic
+
+.games_list
+  .game:nth-child(odd)
+    clear: left
+  .win
+    @extend .panel-success
+    .result
+      font-weight: bold
+
+  .time_win, .tie
+    .result
+      font-style: italic
