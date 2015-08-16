@@ -1,0 +1,11 @@
+.col-md-6.game
+  .panel.panel-default
+    .panel-heading
+      = neutral_game_title(game)
+    - if game.earned_achievements.any?
+      .panel-body
+        - game.earned_achievements.each do |ea|
+          %div
+            = t(:achievement_unlocked_for_player, player: ea.player.name)
+            %b= ea.achievement.title
+            = "(#{pluralize(ea.achievement.points, t(:point))}; #{t(ea.achievement.side)})"

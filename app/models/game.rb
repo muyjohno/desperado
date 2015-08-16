@@ -10,6 +10,8 @@ class Game < ActiveRecord::Base
 
   enum result: %w(corp_win runner_win corp_time_win runner_time_win tie)
 
+  scope :recent, -> { order(created_at: :desc).limit(10) }
+
   def player_result(player)
     return :win if player_win?(player)
     return :time_win if player_time_win?(player)
@@ -37,6 +39,15 @@ class Game < ActiveRecord::Base
   def opponent(player)
     return runner if side(player) == :corp
     return corp if side(player) == :runner
+
+    Null::Player.new
+  end
+
+  def winner
+    return runner if runner_win? || runner_time_win?
+    return corp if corp_win? || corp_time_win?
+
+    Null::Player.new
   end
 
   def add_achievement(achievement)

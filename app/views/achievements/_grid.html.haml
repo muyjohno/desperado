@@ -6,6 +6,6 @@
         .panel-heading=achievement.title
         .panel-body
           =t(achievement.side)
-          ="(#{pluralize(achievement.points, "point")})"
+          ="(#{pluralize(achievement.points, t(:point))})"
           %br
           =achievement.description

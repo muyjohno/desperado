@@ -197,6 +197,7 @@ RSpec.describe Game, type: :model do
 
   describe "#opponent" do
     let(:game) { create(:game) }
+    let(:unrelated_player) { create(:player) }
 
     it "gets runner" do
       expect(game.opponent(game.corp)).to eq(game.runner)
@@ -204,6 +205,10 @@ RSpec.describe Game, type: :model do
 
     it "gets corp" do
       expect(game.opponent(game.runner)).to eq(game.corp)
+    end
+
+    it "fails correctly" do
+      expect(game.opponent(unrelated_player)).to be_a(Null::Player)
     end
   end
 
@@ -215,6 +220,47 @@ RSpec.describe Game, type: :model do
     it "returns achievements" do
       expect(game.achievements(player).count).to eq(1)
       expect(game.achievements(player)).to include(earned_achievement.achievement)
+    end
+  end
+
+  describe "#winner" do
+    let(:game) { create(:game) }
+    let(:unrelated_player) { create(:player) }
+
+    it "gets runner" do
+      game.result = :runner_win
+
+      expect(game.winner).to eq(game.runner)
+    end
+
+    it "gets corp" do
+      game.result = :corp_time_win
+
+      expect(game.winner).to eq(game.corp)
+    end
+
+    it "fails correctly" do
+      game.result = :tie
+
+      expect(game.winner).to be_a(Null::Player)
+    end
+  end
+
+  describe ".recent" do
+    let!(:games) do
+      [].tap do |games|
+        11.times do
+          games << create(:game)
+        end
+      end
+    end
+
+    it "returns correct number" do
+      expect(Game.recent.count).to eq(10)
+    end
+
+    it "returns correct games" do
+      expect(Game.recent).not_to include(games.first)
     end
   end
 end
