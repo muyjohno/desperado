@@ -194,4 +194,27 @@ RSpec.describe Game, type: :model do
       expect(game.points_for_achievements(bob)).to eq(1)
     end
   end
+
+  describe "#opponent" do
+    let(:game) { create(:game) }
+
+    it "gets runner" do
+      expect(game.opponent(game.corp)).to eq(game.runner)
+    end
+
+    it "gets corp" do
+      expect(game.opponent(game.runner)).to eq(game.corp)
+    end
+  end
+
+  describe "#player_achievements" do
+    let(:earned_achievement) { create_earned_achievement }
+    let(:game) { earned_achievement.game }
+    let(:player) { earned_achievement.player }
+
+    it "returns achievements" do
+      expect(game.achievements(player).count).to eq(1)
+      expect(game.achievements(player)).to include(earned_achievement.achievement)
+    end
+  end
 end

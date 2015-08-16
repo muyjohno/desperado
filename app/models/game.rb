@@ -25,8 +25,18 @@ class Game < ActiveRecord::Base
     (player == corp && corp_time_win?) || (player == runner && runner_time_win?)
   end
 
+  def player_achievements(player)
+    earned_achievements.where(player: player).collect(&:achievement)
+  end
+
   def side(player)
-    player == corp ? :corp : :runner
+    return :corp if player == corp
+    return :runner if player == runner
+  end
+
+  def opponent(player)
+    return runner if side(player) == :corp
+    return corp if side(player) == :runner
   end
 
   def add_achievement(achievement)
