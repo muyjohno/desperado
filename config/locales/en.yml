@@ -51,6 +51,7 @@ en:
   confirm_delete_game: "Deleting game. Are you sure?"
   deleted_game: "Deleted game"
   delete_game_failed: "Couldn't delete game"
+  no_players_exist: "Cannot create game: Insufficient players"
 
   achievements: "Achievements"
   manage_achievements: "Manage achievements"

@@ -6,6 +6,8 @@ class GamesController < ApplicationController
   end
 
   def new
+    redirect_to games_path, notice: t(:no_players_exist) if Player.count < 2
+
     @game = Game.new
   end
 
