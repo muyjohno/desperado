@@ -41,6 +41,16 @@ RSpec.describe Player, type: :model do
       expect(subject.games).to include(game)
       expect(subject.games).to include(game2)
     end
+
+    describe "dependence" do
+      let!(:dependent_game) { create(:game) }
+
+      it "destroys associated games" do
+        expect do
+          dependent_game.corp.destroy!
+        end.to change(Game, :count).by(-1)
+      end
+    end
   end
 
   describe "achievement associations" do
@@ -66,15 +76,15 @@ RSpec.describe Player, type: :model do
       expect(subject.achievements.count).to eq(1)
       expect(subject.achievements.first).to eq(achievement)
     end
-  end
 
-  describe "dependence" do
-    let!(:earned) { create_earned_achievement }
+    describe "dependence" do
+      let!(:earned) { create_earned_achievement }
 
-    it "earned achievement is deleted" do
-      expect do
-        earned.player.destroy
-      end.to change(EarnedAchievement, :count).by(-1)
+      it "earned achievement is deleted" do
+        expect do
+          earned.player.destroy
+        end.to change(EarnedAchievement, :count).by(-1)
+      end
     end
   end
 

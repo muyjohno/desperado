@@ -27,6 +27,36 @@ RSpec.describe GamesController, type: :controller do
       end
     end
 
+    describe "GET new" do
+      context "with players" do
+        before do
+          create(:player)
+          create(:player)
+          get :new
+        end
+
+        it "is successful" do
+          expect(response).to have_http_status(:ok)
+          expect(response).to render_template(:new)
+        end
+
+        it "assigns games correctly" do
+          expect(assigns(:game)).to be_a(Game)
+        end
+      end
+
+      context "without players" do
+        before do
+          get :new
+        end
+
+        it "fails correctly" do
+          expect(response).to have_http_status(:redirect)
+          expect(flash[:notice]).to eq(I18n.t(:no_players_exist))
+        end
+      end
+    end
+
     describe "POST create" do
       context "with reverse" do
         it "is successful" do
@@ -197,6 +227,12 @@ RSpec.describe GamesController, type: :controller do
     describe "GET index" do
       it_behaves_like "a restricted controller" do
         let(:go) { get :index }
+      end
+    end
+
+    describe "GET new" do
+      it_behaves_like "a restricted controller" do
+        let(:go) { get :new }
       end
     end
 
