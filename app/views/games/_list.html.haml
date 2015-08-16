@@ -1,17 +1,6 @@
-- player ||= nil
 .row.games_list
   - games.each do |game|
-    .col-md-6.game
-      .panel.panel-default{ class: game.player_result(player) }
-        .panel-heading
-          = "Played #{game.side(player).to_s.titleize} against"
-          = link_to game.opponent(player).name, player_path(game.opponent(player))
-          = ": "
-          %span.result= game.player_result(player).to_s.titleize
-        - if game.player_achievements(player).any?
-          .panel-body
-            - game.player_achievements(player).each do |ach|
-              %div
-                Achievement Unlocked!
-                %b= ach.title
-                = "(#{ach.points} points; #{ach.side.titleize})"
+    - if defined?(player)
+      = render "games/game_with_context", game: game, player: player
+    - else
+      = render "games/neutral_game", game: game

@@ -8,6 +8,9 @@ en:
   corp_time_win: "Corp time win"
   runner_time_win: "Runner time win"
   tie: "Tie"
+  win: "Win"
+  time_win: "Time win"
+  loss: "Loss"
 
   log_in: "Jack in"
   login_success: "Jacked in!"
@@ -52,6 +55,8 @@ en:
   deleted_game: "Deleted game"
   delete_game_failed: "Couldn't delete game"
   no_players_exist: "Cannot create game: Insufficient players"
+  played_side_against_opponent: "Played %{side} against %{opponent}:"
+  neutral_game_title: "%{corp_player} (Corp) played %{runner_player} (Runner): %{result}"
 
   achievements: "Achievements"
   manage_achievements: "Manage achievements"
@@ -70,6 +75,9 @@ en:
   confirm_delete_achievement: "Deleting %{title}. Are you sure?"
   deleted_achievement: "Deleted achievement"
   delete_achievement_failed: "Couldn't delete achievement"
+  achievement_unlocked: "Achievement Unlocked!"
+  achievement_unlocked_for_player: "%{player} unlocked:"
+  point: "point"
 
   league_name: "Name"
   edit_league: "Edit league"

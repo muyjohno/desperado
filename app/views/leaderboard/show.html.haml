@@ -1,1 +1,4 @@
 = render "table", rows: @leaderboard
+.row
+  %h3= t(:recent_games)
+  = render "games/list", games: @recent_games

@@ -10,4 +10,36 @@ module GamesHelper
   def runner_achievements
     Achievement.runner
   end
+
+  def result_class(game, player)
+    game.player_result(player)
+  end
+
+  def played_side_against_opponent(game, player)
+    t(:played_side_against_opponent,
+      side: game.side(player).to_s.titleize,
+      opponent: link_player(game.opponent(player))
+    ).html_safe
+  end
+
+  def neutral_game_title(game)
+    t(:neutral_game_title,
+      corp_player: link_player(game.corp),
+      runner_player: link_player(game.runner),
+      result: neutral_result(game)
+    ).html_safe
+  end
+
+  def neutral_result(game)
+    return t(:tie) if game.tie?
+
+    name = game.winner.name
+    result = t(:win) if game.corp_win? || game.runner_win?
+    result = t(:time_win) if game.corp_time_win? || game.runner_time_win?
+    "#{h(name)} #{result}"
+  end
+
+  def link_player(player)
+    link_to(h(player.name), player_path(player)).html_safe
+  end
 end
