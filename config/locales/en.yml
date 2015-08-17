@@ -57,6 +57,7 @@ en:
   no_players_exist: "Cannot create game: Insufficient players"
   played_side_against_opponent: "Played %{side} against %{opponent}:"
   neutral_game_title: "%{corp_player} (Corp) played %{runner_player} (Runner): %{result}"
+  week: "Week %{week}"
 
   achievements: "Achievements"
   manage_achievements: "Manage achievements"

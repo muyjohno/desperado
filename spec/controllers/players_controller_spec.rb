@@ -5,9 +5,10 @@ RSpec.describe PlayersController, type: :controller do
     describe "GET show" do
       context "player with games" do
         let!(:ach) { create(:achievement) }
+        let!(:game1) { create(:game, corp: player, runner: create(:player), result: :corp_win, week: 1) }
+        let!(:game2) { create(:game, corp: player, runner: create(:player), result: :runner_win, week: 2) }
 
         before do
-          create(:game, corp: player, runner: create(:player), result: :corp_win)
           get :show, id: player.id
         end
 
@@ -28,6 +29,13 @@ RSpec.describe PlayersController, type: :controller do
         it "assigns achievements correctly" do
           expect(assigns(:achievements).count).to eq(1)
           expect(assigns(:achievements)).to include(ach)
+        end
+
+        it "assigns games correctly" do
+          expect(assigns(:games)).to eq(
+            1 => [game1],
+            2 => [game2]
+          )
         end
       end
 

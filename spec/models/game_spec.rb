@@ -250,17 +250,25 @@ RSpec.describe Game, type: :model do
     let!(:games) do
       [].tap do |games|
         11.times do
-          games << create(:game)
+          games << create(:game, week: 2)
         end
+        games << create(:game, week: 1)
       end
     end
+    let(:recent) { Game.recent }
 
     it "returns correct number" do
       expect(Game.recent.count).to eq(10)
     end
 
     it "returns correct games" do
-      expect(Game.recent).not_to include(games.first)
+      games.each_with_index do |game, i|
+        if i == 0 || i == 11
+          expect(recent).not_to include(game)
+        else
+          expect(recent).to include(game)
+        end
+      end
     end
   end
 end
