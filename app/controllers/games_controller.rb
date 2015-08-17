@@ -64,7 +64,7 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:corp_id, :runner_id, :result)
+    params.require(:game).permit(:corp_id, :runner_id, :result, :week)
   end
 
   def reverse_params

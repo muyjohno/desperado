@@ -5,6 +5,7 @@
 %table.table.games
   %tr
     %th #
+    %th= t(:week)
     %th= t(:game_corp_player)
     %th= t(:game_runner_player)
     %th= t(:game_result)
@@ -12,6 +13,7 @@
   - @games.each do |game|
     %tr
       %td= game.id
+      %td= game.week
       %td{ class: game.player_result(game.corp) }= game.corp.name
       %td{ class: game.player_result(game.runner) }= game.runner.name
       %td= t(game.result)

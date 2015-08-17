@@ -62,7 +62,7 @@ RSpec.describe GamesController, type: :controller do
         it "is successful" do
           expect do
             post :create,
-              game: { corp_id: player1.id, runner_id: player2.id, result: :corp_win },
+              game: { corp_id: player1.id, runner_id: player2.id, result: :corp_win, week: 1 },
               reverse_result: :corp_win
           end.to change(Game, :count).by(2)
 
@@ -73,7 +73,7 @@ RSpec.describe GamesController, type: :controller do
         it "fails correctly" do
           expect do
             post :create,
-              game: { corp_id: player1.id, runner_id: player1.id, result: :corp_win },
+              game: { corp_id: player1.id, runner_id: player1.id, result: :corp_win, week: 1 },
               reverse_result: :corp_win
           end.to change(Game, :count).by(0)
 
@@ -105,18 +105,22 @@ RSpec.describe GamesController, type: :controller do
         it "is successful" do
           expect do
             post :create,
-              game: { corp_id: player1.id, runner_id: player2.id, result: :corp_win },
+              game: { corp_id: player1.id, runner_id: player2.id, result: :runner_time_win, week: 3 },
               reverse_result: ""
           end.to change(Game, :count).by(1)
 
           expect(response).to have_http_status(:redirect)
           expect(flash[:notice]).to eq(I18n.t(:created_game))
+          expect(Game.last.corp).to eq(player1)
+          expect(Game.last.runner).to eq(player2)
+          expect(Game.last.runner_time_win?).to eq(true)
+          expect(Game.last.week).to eq(3)
         end
 
         it "fails correctly" do
           expect do
             post :create,
-              game: { corp_id: player1.id, runner_id: player1.id, result: :corp_win }
+              game: { corp_id: player1.id, runner_id: player1.id, result: :corp_win, week: 1 }
           end.to change(Game, :count).by(0)
 
           expect(response).to have_http_status(:redirect)
