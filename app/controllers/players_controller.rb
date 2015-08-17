@@ -5,6 +5,7 @@ class PlayersController < ApplicationController
     @player = find_player
     @leaderboard_row = leaderboard.row_for(@player)
     @achievements = Achievement.all
+    @games = @player.games.group_by(&:week)
   end
 
   def index
