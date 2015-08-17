@@ -3,7 +3,7 @@
 .row
   %h3= t(:games)
   - @games.keys.sort.each do |week|
-    %h4= t(:week, week: week)
+    %h4= t(:week_number, week: week) if week > 0
     = render "games/list", games: @games[week], player: @player
 .row
   %h3= t(:achievements)
