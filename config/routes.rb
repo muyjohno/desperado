@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   patch "manage_league" => "league#update", as: :update_league
   get "change_password" => "users#edit", as: :change_password
   patch "change_password" => "users#update", as: :update_password
+  get "rules" => "rules#show", as: :rules
 end

@@ -138,6 +138,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     rake (10.4.2)
+    redcarpet (3.3.2)
     rspec-core (3.3.0)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.0)
@@ -211,6 +212,7 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 4.2.1)
+  redcarpet
   rspec-rails
   rubocop
   sass-rails (~> 5.0)
