@@ -3,5 +3,6 @@ FactoryGirl.define do
     association :corp, factory: :player
     association :runner, factory: :player
     result :corp_win
+    week 1
   end
 end
