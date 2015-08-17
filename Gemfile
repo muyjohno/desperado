@@ -9,6 +9,7 @@ gem "turbolinks"
 gem "bcrypt", "~> 3.1.7"
 gem "haml-rails", "~> 0.9"
 gem "bootstrap-sass"
+gem "redcarpet"
 
 group :development, :test do
   gem "web-console", "~> 2.0"
