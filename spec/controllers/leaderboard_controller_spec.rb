@@ -1,6 +1,9 @@
 RSpec.describe LeaderboardController, type: :controller do
   describe "GET show" do
+    let(:league) { League.current }
+
     before do
+      league.update(home_content: "**Hello**")
       create(:game)
       create(:game)
       get :show
@@ -21,6 +24,10 @@ RSpec.describe LeaderboardController, type: :controller do
     it "assigns recent_games correctly" do
       expect(assigns(:recent_games)).to be_a(ActiveRecord::Relation)
       expect(assigns(:recent_games).count).to eq(2)
+    end
+
+    it "assigns content correctly" do
+      expect(assigns(:content)).to match("<p><strong>Hello</strong></p>")
     end
   end
 end

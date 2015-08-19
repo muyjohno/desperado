@@ -21,7 +21,7 @@ class LeagueController < ApplicationController
   private
 
   def league_params
-    params.require(:league).permit(:name, :rules_content)
+    params.require(:league).permit(:name, :rules_content, :home_content)
   end
 
   def rules_params

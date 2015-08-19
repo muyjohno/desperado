@@ -86,7 +86,8 @@ en:
   save_league: "Save"
   updated_league: "Updated league"
   update_league_failed: "Couldn't update league"
-  league_rules: "Rules (format in markdown)"
+  league_rules: "Rules page content (format in markdown)"
+  homepage_content: "Homepage message (format in markdown)"
 
   change_password: "Change password"
   password: "Password"

@@ -30,9 +30,17 @@ RSpec.describe LeagueController, type: :controller do
 
       it "updates league" do
         expect_any_instance_of(League).to receive(:update_attributes)
-          .with("name" => "Test", "rules_content" => "New content")
+          .with(
+            "name" => "Test",
+            "rules_content" => "New content",
+            "home_content" => "Home content"
+          )
 
-        post :update, league: { name: "Test", rules_content: "New content" }
+        post :update, league: {
+          name: "Test",
+          rules_content: "New content",
+          home_content: "Home content"
+        }
       end
 
       it "updates rules" do
