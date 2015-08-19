@@ -1,6 +1,7 @@
 class RulesController < ApplicationController
+  include MarkdownContent
+
   def show
-    renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-    @content = renderer.render(league.rules_content)
+    @content = markdown(league.rules_content)
   end
 end
