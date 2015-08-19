@@ -1,4 +1,4 @@
-User.create!(username: "admin", password: "admin")
+User.create!(username: "admin", password: "admin", password_confirmation: "admin")
 
 Rule.create!(key: :points_for_win, value: 2, ordinal: 0)
 Rule.create!(key: :points_for_time_win, value: 1, ordinal: 1)
