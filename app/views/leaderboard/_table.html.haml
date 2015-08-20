@@ -4,6 +4,8 @@
     %th Name
     %th Played
     %th Wins (Corp/Runner)
+    %th= "Participation Points" if participation_points_active?
+    %th= "Achievement Points" if achievement_points_active?
     %th Points
   - rows.each do |row|
     %tr
@@ -11,4 +13,6 @@
       %td= link_to row.player.name, player_path(row.player)
       %td= row.played
       %td= "#{row.corp_wins}/#{row.runner_wins}"
+      %td= row.participation_points if participation_points_active?
+      %td= row.achievement_points if achievement_points_active?
       %td= row.points

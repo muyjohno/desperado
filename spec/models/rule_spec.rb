@@ -12,4 +12,8 @@ RSpec.describe Rule, type: :model do
       it { expect(duplicate).not_to be_valid }
     end
   end
+
+  it "should fall back to default" do
+    expect(Rule.value_for("doesn't exist", 99)).to eq(99)
+  end
 end

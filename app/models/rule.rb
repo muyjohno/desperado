@@ -8,11 +8,13 @@ class Rule < ActiveRecord::Base
     points_for_win:       0,
     points_for_loss:      1,
     points_for_tie:       2,
-    points_for_time_win:  3
+    points_for_time_win:  3,
+    points_for_participation:     4,
+    max_points_for_participation: 5
   }
 
-  def self.value_for(key)
-    rule_for(key).value
+  def self.value_for(key, default = nil)
+    rule_for(key).value || default
   end
 
   def self.rule_for(key)
@@ -20,6 +22,6 @@ class Rule < ActiveRecord::Base
   end
 
   def update_ordinal
-    ordinal = KEYS[key.to_sym]
+    self.ordinal = KEYS[key.to_sym]
   end
 end
