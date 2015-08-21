@@ -21,7 +21,9 @@ RSpec.describe Leaderboard, type: :model do
     describe("#runner_wins") { it { expect(row.runner_wins).to be(1) } }
     describe("#points") { it { expect(row.points).to be(8) } }
     describe("#weak_side_wins") { it { expect(row.weak_side_wins).to be(1) } }
-    describe("#participation_points") { it { expect(row.participation_points).to be(4) } }
+    describe("#participation_points") do
+      it { expect(row.participation_points).to be(4) }
+    end
 
     context "with achievement" do
       let(:achievement) { create(:achievement, side: :corp, points: 3) }
@@ -35,7 +37,9 @@ RSpec.describe Leaderboard, type: :model do
       end
 
       describe("#points") { it { expect(row.points).to eq(11) } }
-      describe("#achievement_points") { it { expect(row.achievement_points).to eq(3) } }
+      describe("#achievement_points") do
+        it { expect(row.achievement_points).to eq(3) }
+      end
     end
   end
 

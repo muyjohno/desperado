@@ -4,14 +4,14 @@ class Rule < ActiveRecord::Base
 
   validates_uniqueness_of :key
 
-  KEYS = {
-    points_for_win:       0,
-    points_for_loss:      1,
-    points_for_tie:       2,
-    points_for_time_win:  3,
-    points_for_participation:     4,
-    max_points_for_participation: 5
-  }
+  KEYS = [
+    :points_for_win,
+    :points_for_loss,
+    :points_for_tie,
+    :points_for_time_win,
+    :points_for_participation,
+    :max_points_for_participation
+  ]
 
   def self.value_for(key, default = nil)
     rule_for(key).value || default
@@ -22,6 +22,6 @@ class Rule < ActiveRecord::Base
   end
 
   def update_ordinal
-    self.ordinal = KEYS[key.to_sym]
+    self.ordinal = KEYS.index(key.to_sym)
   end
 end
