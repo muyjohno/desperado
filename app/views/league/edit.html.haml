@@ -15,7 +15,7 @@
         = f.text_area :home_content, class: "form-control", rows: 5
     - @rules.each do |rule|
       .form-group
-        = label_tag rule.key, rule.key.to_s.titleize, class: ["col-sm-2", "control-label"]
+        = label_tag rule.key, t(rule.key), class: ["col-sm-2", "control-label"]
         .col-sm-10
           = text_field_tag "rules[#{rule.key}]", rule.value, class: "form-control"
     .form-group
