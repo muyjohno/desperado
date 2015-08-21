@@ -103,3 +103,10 @@ en:
   points_for_time_win: "Points awarded for a Time Win"
   points_for_participation: "Participation points per game"
   max_points_for_participation: "Max. participation points in a season"
+
+  leaderboard_position: "Position"
+  games_played: "Played"
+  wins_by_side: "Wins (Corp/Runner)"
+  participation_points: "Participation points"
+  achievement_points: "Achievement points"
+  leaderboard_points: "Points"

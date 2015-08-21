@@ -1,12 +1,12 @@
 %table.table
   %tr
-    %th Position
-    %th Name
-    %th Played
-    %th Wins (Corp/Runner)
-    %th= "Participation Points" if participation_points_active?
-    %th= "Achievement Points" if achievement_points_active?
-    %th Points
+    %th= t(:leaderboard_position)
+    %th= t(:player_name)
+    %th= t(:games_played)
+    %th= t(:wins_by_side)
+    %th= t(:participation_points) if participation_points_active?
+    %th= t(:achievement_points) if achievement_points_active?
+    %th= t(:leaderboard_points)
   - rows.each do |row|
     %tr
       %td= row.position
