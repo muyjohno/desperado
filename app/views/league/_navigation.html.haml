@@ -1,0 +1,7 @@
+%ul.nav.nav-tabs
+  %li{role: :presentation, class: tab_class(active, :league)}
+    =link_to t(:edit_league), edit_league_path
+  %li{role: :presentation, class: tab_class(active, :rules)}
+    =link_to t(:edit_rules), edit_rules_path
+  %li{role: :presentation, class: tab_class(active, :tiebreakers)}
+    =link_to t(:edit_tiebreakers), edit_tiebreakers_path

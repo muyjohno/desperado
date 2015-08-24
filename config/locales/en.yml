@@ -82,12 +82,15 @@ en:
   point: "point"
 
   league_name: "Name"
-  edit_league: "Edit league"
+  edit_league: "Edit League"
   save_league: "Save"
   updated_league: "Updated league"
   update_league_failed: "Couldn't update league"
   league_rules: "Rules page content (format in markdown)"
   homepage_content: "Homepage message (format in markdown)"
+  edit_rules: "Edit Rules"
+  updated_rules: "Updated rules"
+  edit_tiebreakers: "Edit Tiebreakers"
 
   change_password: "Change password"
   password: "Password"
