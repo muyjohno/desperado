@@ -24,4 +24,19 @@ RSpec.describe Ruleset, type: :model do
       end
     end
   end
+
+  describe "#rankers" do
+    let(:rankers) { ruleset.rankers }
+
+    before do
+      create(:tiebreaker, tiebreaker: :most_points, ordinal: 1)
+      create(:tiebreaker, tiebreaker: :most_weak_side_wins, ordinal: 2)
+    end
+
+    it "returns rankers in order" do
+      expect(rankers.length).to eq(2)
+      expect(rankers.first).to eq(Ranker::MostPoints)
+      expect(rankers.second).to eq(Ranker::MostWeakSideWins)
+    end
+  end
 end
