@@ -25,4 +25,15 @@ RSpec.describe Tiebreaker, type: :model do
       expect(ordered.second).to eq(second)
     end
   end
+
+  describe ".available_tiebreakers" do
+    let!(:taken) { create(:tiebreaker, tiebreaker: :most_points, ordinal: 1) }
+    let(:available) { Tiebreaker.available_tiebreakers }
+
+    it "should return correct tiebreaker options" do
+      expect(available).to include(:most_weak_side_wins)
+      expect(available).to include(:fewest_played)
+      expect(available).not_to include(:most_points)
+    end
+  end
 end

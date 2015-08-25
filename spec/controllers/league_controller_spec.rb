@@ -74,17 +74,6 @@ RSpec.describe LeagueController, type: :controller do
         expect(Rule.rule_for(:points_for_tie).value).to eq(99)
       end
     end
-
-    describe "GET tiebreakers" do
-      before do
-        get :tiebreakers
-      end
-
-      it "is successful" do
-        expect(response).to have_http_status(:ok)
-        expect(response).to render_template(:tiebreakers)
-      end
-    end
   end
 
   context "not authorised" do
@@ -109,12 +98,6 @@ RSpec.describe LeagueController, type: :controller do
     describe "POST update_rules" do
       it_behaves_like "a restricted controller" do
         let(:go) { post :update_rules }
-      end
-    end
-
-    describe "GET tiebreakers" do
-      it_behaves_like "a restricted controller" do
-        let(:go) { get :tiebreakers }
       end
     end
   end

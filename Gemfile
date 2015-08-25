@@ -10,6 +10,8 @@ gem "bcrypt", "~> 3.1.7"
 gem "haml-rails", "~> 0.9"
 gem "bootstrap-sass"
 gem "redcarpet"
+gem "ranked-model"
+gem "jquery-ui-rails"
 
 group :development, :test do
   gem "web-console", "~> 2.0"

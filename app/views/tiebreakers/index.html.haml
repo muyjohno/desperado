@@ -1,0 +1,19 @@
+= render "league/navigation", active: :tiebreakers
+%h2= t(:edit_tiebreakers)
+.row
+  .col-sm-6
+    %table.table.table-bordered.table-striped#sortable
+      - @tiebreakers.each do |tiebreaker|
+        %tr{ data: { "item-id" => tiebreaker.id }, class: :item}
+          %td= tiebreaker.tiebreaker
+  .col-sm-6
+    = form_for :tiebreaker, url: tiebreakers_path do |f|
+      .form-group
+        = f.label :tiebreaker, t(:tiebreaker), class: ["col-sm-2", "control-label"]
+        .col-sm-10
+          = f.select :tiebreaker, tiebreaker_options, {}, class: "form-control"
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = button_tag class: ["btn", "btn-success"] do
+            %span.glyphicon.glyphicon-pencil
+            = t(:add_tiebreaker)

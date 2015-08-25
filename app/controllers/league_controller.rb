@@ -25,6 +25,15 @@ class LeagueController < ApplicationController
   end
 
   def tiebreakers
+    @tiebreakers = Tiebreaker.ordered
+  end
+
+  def update_tiebreaker
+    @tiebreaker = Tiebreaker.find(tiebreaker_params[:tiebreaker_id])
+    @tiebreaker.ordinal_position = tiebreaker_params[:ordinal_position]
+    @tiebreaker.save
+
+    render nothing: true
   end
 
   private
@@ -35,5 +44,9 @@ class LeagueController < ApplicationController
 
   def rules_params
     params[:rules] || {}
+  end
+
+  def tiebreaker_params
+    params.require(:tiebreaker).permit(:tiebreaker_id, :ordinal_position)
   end
 end
