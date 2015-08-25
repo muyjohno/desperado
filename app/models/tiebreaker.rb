@@ -1,6 +1,6 @@
 class Tiebreaker < ActiveRecord::Base
   enum tiebreaker: [:most_points, :most_weak_side_wins, :fewest_played]
-  validates_uniqueness_of :tiebreaker
+  validates :tiebreaker, uniqueness: true
 
   include RankedModel
   ranks :ordinal
@@ -8,6 +8,6 @@ class Tiebreaker < ActiveRecord::Base
 
   def self.available_tiebreakers
     taken = pluck(:tiebreaker)
-    tiebreakers.reject { |k, v| taken.include?(v) }
+    tiebreakers.reject { |_, v| taken.include?(v) }
   end
 end

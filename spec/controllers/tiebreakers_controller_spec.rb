@@ -1,13 +1,13 @@
 RSpec.describe TiebreakersController, type: :controller do
   context "authorised" do
     before do
-      allow_any_instance_of(ApplicationController).to receive(:authorise)
-        .and_return(nil)
+      allow_any_instance_of(ApplicationController).to receive(:authorise).
+        and_return(nil)
     end
 
     describe "GET index" do
       before do
-        create(:tiebreaker, tiebreaker: :most_points)
+        create_tiebreaker(:most_points)
         get :index
       end
 
@@ -27,7 +27,7 @@ RSpec.describe TiebreakersController, type: :controller do
     describe "POST create" do
       it "is successful" do
         expect do
-          post :create, { tiebreaker: { tiebreaker: :most_points } }
+          post :create, tiebreaker: { tiebreaker: :most_points }
         end.to change(Tiebreaker, :count).by(1)
 
         expect(response).to have_http_status(:redirect)
@@ -35,11 +35,11 @@ RSpec.describe TiebreakersController, type: :controller do
       end
 
       it "fails correctly" do
-        create(:tiebreaker, tiebreaker: :most_points)
+        create_tiebreaker(:most_points)
 
         expect do
           post :create, tiebreaker: { tiebreaker: :most_points }
-        end.to change{ Tiebreaker.count }.by(0)
+        end.to change { Tiebreaker.count }.by(0)
 
         expect(response).to have_http_status(:ok)
         expect(response).to render_template(:index)
@@ -48,11 +48,13 @@ RSpec.describe TiebreakersController, type: :controller do
     end
 
     describe "POST update" do
-      let(:tiebreaker1) { create(:tiebreaker, tiebreaker: :most_points, ordinal: 1) }
-      let(:tiebreaker2) { create(:tiebreaker, tiebreaker: :fewest_played, ordinal: 2) }
+      let(:tiebreaker1) { create_tiebreaker(:most_points, 1) }
+      let(:tiebreaker2) { create_tiebreaker(:fewest_played, 2) }
 
       it "is successful" do
-        post :update, id: tiebreaker2.to_param, tiebreaker: { ordinal_position: 1 }
+        post :update,
+          id: tiebreaker2.to_param,
+          tiebreaker: { ordinal_position: 1 }
 
         expect(tiebreaker1.reload.ordinal).to be > tiebreaker2.reload.ordinal
         expect(response).to have_http_status(:ok)
@@ -60,7 +62,7 @@ RSpec.describe TiebreakersController, type: :controller do
     end
 
     describe "DELETE destroy" do
-      let!(:tiebreaker) { create(:tiebreaker, tiebreaker: :most_points, ordinal: 1) }
+      let!(:tiebreaker) { create_tiebreaker(:most_points, 1) }
 
       it "is successful" do
         expect do

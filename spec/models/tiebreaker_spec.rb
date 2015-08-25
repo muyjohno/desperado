@@ -16,8 +16,8 @@ RSpec.describe Tiebreaker, type: :model do
   end
 
   describe ".ordered" do
-    let!(:second) { create(:tiebreaker, tiebreaker: :most_weak_side_wins, ordinal: 2) }
-    let!(:first) { create(:tiebreaker, tiebreaker: :most_points, ordinal: 1) }
+    let!(:second) { create_tiebreaker(:most_weak_side_wins, 2) }
+    let!(:first) { create_tiebreaker(:most_points, 1) }
     let(:ordered) { Tiebreaker.ordered }
 
     it "should return tiebreakers in order" do
@@ -27,7 +27,7 @@ RSpec.describe Tiebreaker, type: :model do
   end
 
   describe ".available_tiebreakers" do
-    let!(:taken) { create(:tiebreaker, tiebreaker: :most_points, ordinal: 1) }
+    let!(:taken) { create_tiebreaker(:most_points, 1) }
     let(:available) { Tiebreaker.available_tiebreakers }
 
     it "should return correct tiebreaker options" do

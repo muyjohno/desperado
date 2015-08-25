@@ -20,6 +20,8 @@ class Ruleset
   end
 
   def rankers
-    Tiebreaker.ordered.map { |t| "Ranker::#{t.tiebreaker.camelize}".constantize }
+    Tiebreaker.ordered.map do |t|
+      "Ranker::#{t.tiebreaker.camelize}".constantize
+    end
   end
 end
