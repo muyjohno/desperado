@@ -5,7 +5,11 @@
     %table.table.table-bordered.table-striped#sortable
       - @tiebreakers.each do |tiebreaker|
         %tr{ data: { "item-id" => tiebreaker.id }, class: :item}
-          %td= tiebreaker.tiebreaker
+          %td
+            = t(tiebreaker.tiebreaker)
+          %td
+            = link_to tiebreaker_path(tiebreaker), method: :delete do
+              %span.glyphicon.glyphicon-trash
   .col-sm-6
     = form_for :tiebreaker, url: tiebreakers_path do |f|
       .form-group
