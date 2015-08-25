@@ -19,9 +19,9 @@ class Ruleset
     end
   end
 
-  private
-
   def rankers
-    [Ranker::MostPoints, Ranker::MostWeakSideWins, Ranker::FewestPlayed]
+    Tiebreaker.ordered.map do |t|
+      "Ranker::#{t.tiebreaker.camelize}".constantize
+    end
   end
 end

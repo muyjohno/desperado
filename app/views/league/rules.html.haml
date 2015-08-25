@@ -1,0 +1,16 @@
+= render "navigation", active: :rules
+%h2= t(:edit_rules)
+= form_for @league, url: update_rules_path, html: { class: "form-horizontal" } do |f|
+  - @rules.each do |rule|
+    .form-group
+      = label_tag rule.key, t(rule.key), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = text_field_tag "rules[#{rule.key}]", rule.value, class: "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = button_tag class: ["btn", "btn-success"] do
+        %span.glyphicon.glyphicon-pencil
+        = t(:save_league)
+      %a.btn.btn-danger{ href: root_path }
+        %span.glyphicon.glyphicon-remove
+        = t(:cancel)

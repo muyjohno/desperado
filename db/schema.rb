@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819204014) do
+ActiveRecord::Schema.define(version: 20150823202811) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "title"
@@ -63,6 +63,11 @@ ActiveRecord::Schema.define(version: 20150819204014) do
   end
 
   add_index "rules", ["league_id"], name: "index_rules_on_league_id"
+
+  create_table "tiebreakers", force: :cascade do |t|
+    t.integer "tiebreaker"
+    t.integer "ordinal"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

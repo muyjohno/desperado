@@ -82,12 +82,14 @@ en:
   point: "point"
 
   league_name: "Name"
-  edit_league: "Edit league"
+  edit_league: "Edit League"
   save_league: "Save"
   updated_league: "Updated league"
   update_league_failed: "Couldn't update league"
   league_rules: "Rules page content (format in markdown)"
   homepage_content: "Homepage message (format in markdown)"
+  edit_rules: "Edit Rules"
+  updated_rules: "Updated rules"
 
   change_password: "Change password"
   password: "Password"
@@ -110,3 +112,10 @@ en:
   participation_points: "Participation points"
   achievement_points: "Achievement points"
   leaderboard_points: "Points"
+
+  edit_tiebreakers: "Edit Tiebreakers"
+  added_tiebreaker: "Added tiebreaker"
+  removed_tiebreaker: "Removed tiebreaker"
+  most_points: "Most points"
+  most_weak_side_wins: "Most weak-side wins"
+  fewest_played: "Fewest games played"
