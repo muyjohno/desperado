@@ -2,6 +2,7 @@ class League < ActiveRecord::Base
   INSTANCE_ID = 1
 
   has_many :rules
+  enum theme: [:default]
 
   def self.current
     return find(INSTANCE_ID) if exists?(INSTANCE_ID)

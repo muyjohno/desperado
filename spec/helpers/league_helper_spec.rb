@@ -8,4 +8,10 @@ RSpec.describe LeagueHelper, type: :helper do
       expect(helper.tab_class(:other, :current)).to eq(nil)
     end
   end
+
+  describe "#theme_options" do
+    it "returns the correct options" do
+      expect(helper.theme_options).to eq([[t(:theme_default), "default"]])
+    end
+  end
 end
