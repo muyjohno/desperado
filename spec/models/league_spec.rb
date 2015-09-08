@@ -46,4 +46,28 @@ RSpec.describe League, type: :model do
       expect(league.all_rules.first.key).to eq("points_for_win")
     end
   end
+
+  describe "validation" do
+    let(:league) { League.current }
+
+    describe "theme" do
+      it "should allow valid theme" do
+        league.theme = :default
+
+        expect(league).to be_valid
+      end
+
+      it "should allow no theme" do
+        league.theme = nil
+
+        expect(league).to be_valid
+      end
+
+      it "should not allow invalid theme" do
+        expect do
+          league.theme = :theme_that_doesnt_exist
+        end.to raise_error(ArgumentError)
+      end
+    end
+  end
 end

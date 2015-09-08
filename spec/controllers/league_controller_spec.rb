@@ -33,13 +33,15 @@ RSpec.describe LeagueController, type: :controller do
           .with(
             "name" => "Test",
             "rules_content" => "New content",
-            "home_content" => "Home content"
+            "home_content" => "Home content",
+            "theme" => "new_theme"
           )
 
         post :update, league: {
           name: "Test",
           rules_content: "New content",
-          home_content: "Home content"
+          home_content: "Home content",
+          theme: "new_theme"
         }
       end
     end

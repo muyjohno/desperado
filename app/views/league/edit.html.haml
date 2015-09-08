@@ -14,6 +14,10 @@
     .col-sm-10
       = f.text_area :home_content, class: "form-control", rows: 5
   .form-group
+    = f.label :theme, t(:theme), class: ["col-sm-2", "control-label"]
+    .col-sm-10
+      = f.select :theme, theme_options, class: "form-control"
+  .form-group
     .col-sm-offset-2.col-sm-10
       = button_tag class: ["btn", "btn-success"] do
         %span.glyphicon.glyphicon-pencil

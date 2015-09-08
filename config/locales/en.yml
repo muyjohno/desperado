@@ -119,3 +119,6 @@ en:
   most_points: "Most points"
   most_weak_side_wins: "Most weak-side wins"
   fewest_played: "Fewest games played"
+
+  theme: "Theme"
+  theme_default: "Default theme"
