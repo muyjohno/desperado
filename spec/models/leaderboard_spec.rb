@@ -48,6 +48,18 @@ RSpec.describe Leaderboard, type: :model do
 
         leaderboard.rows
       end
+
+      it "should be able to set and get custom stats" do
+        row.add_stat(:test, 99)
+
+        expect(row.test).to eq(99)
+      end
+
+      it "should correctly raise error if key doesn't exist" do
+        expect do
+          row.this_doesnt_exist
+        end.to raise_error(NoMethodError)
+      end
     end
   end
 

@@ -17,6 +17,7 @@ class LeaderboardRow
     @runner_wins = 0
     @participation_points = 0
     @achievement_points = 0
+    @extra = {}
 
     @ruleset = ruleset
   end
@@ -42,6 +43,15 @@ class LeaderboardRow
 
   def weak_side_wins
     @corp_wins > @runner_wins ? @runner_wins : @corp_wins
+  end
+
+  def add_stat(key, value)
+    @extra[key] = value
+  end
+
+  def method_missing(name)
+    return @extra[name] if @extra.has_key?(name)
+    super
   end
 
   private
