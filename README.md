@@ -8,6 +8,7 @@ using Ruby on Rails
 - Sign up for free Heroku account  
 https://signup.heroku.com  
 Heroku's free option allows you to have 18 hours uptime in any 24 hour period.
+Heroku has a paid option if you want higher uptime, or custom domains.
 
 - Download the Heroku Toolbelt  
 https://toolbelt.heroku.com
@@ -18,12 +19,21 @@ git clone git@github.com:muyjohno/desperado.git
 cd desperado
 ```
 
-- Create Heroku instance
+- Login to Heroku
 ```
 heroku login
+```
+
+- Create Heroku instance
+```
 heroku create
+```
+
+- Set up instance
+```
 git push heroku master
 heroku run rake db:migrate
+heroku run rake db:seed
 heroku ps:scale web=1
 ```
 
@@ -38,4 +48,18 @@ as username and password. You should change the password to something more secur
 immediately.  
 You can give out this URL to your players (or customise it through the Heroku panel).
 
-Heroku has a paid option if you want higher uptime, or custom domains.
+## Applying updates
+
+Once the instance is up, updates can be applied like so
+
+- Get updates
+```
+git pull
+```
+
+- Push updates to instance
+```
+git push heroku master
+heroku run rake db:migrate
+```
+Your instance should now have the latest updates. (No data should be lost during updates.)
