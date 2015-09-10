@@ -24,4 +24,10 @@ class Ruleset
       "Ranker::#{t.tiebreaker.camelize}".constantize
     end
   end
+
+  def apply_stats(row)
+    row.tap do |row|
+      rankers.each { |ranker| ranker.apply_stats(row) }
+    end
+  end
 end

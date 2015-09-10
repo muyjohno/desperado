@@ -8,6 +8,6 @@ module LeaderboardHelper
   end
 
   def default_ruleset
-    Ruleset.new
+    @ruleset ||= Ruleset.new
   end
 end

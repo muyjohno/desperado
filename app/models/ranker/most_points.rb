@@ -1,5 +1,5 @@
 module Ranker
-  class MostPoints
+  class MostPoints < Base
     def self.compare(a, b)
       -(a.points <=> b.points)
     end

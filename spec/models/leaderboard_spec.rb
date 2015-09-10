@@ -14,7 +14,7 @@ RSpec.describe Leaderboard, type: :model do
       create(:rule, key: :points_for_participation, value: 2)
     end
 
-    let(:row) { leaderboard.rows[common_player.id] }
+    let(:row) { leaderboard.row_for(common_player) }
 
     describe("#played") { it { expect(row.played).to be(2) } }
     describe("#corp_wins") { it { expect(row.corp_wins).to be(1) } }
@@ -39,6 +39,14 @@ RSpec.describe Leaderboard, type: :model do
       describe("#points") { it { expect(row.points).to eq(11) } }
       describe("#achievement_points") do
         it { expect(row.achievement_points).to eq(3) }
+      end
+    end
+
+    context "with special tiebreaker stats" do
+      it "should apply special stats to each row" do
+        expect(default_ruleset).to receive(:apply_stats).exactly(3).times
+
+        leaderboard.rows
       end
     end
   end
