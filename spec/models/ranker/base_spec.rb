@@ -11,7 +11,7 @@ RSpec.describe Ranker::Base, type: :model do
 
   it "should apply no extra stats" do
     expect do
-      subject.apply_stats(row1)
+      subject.apply_stats(row1, nil, nil)
     end.not_to change { row1 }
   end
 end

@@ -25,9 +25,7 @@ class Ruleset
     end
   end
 
-  def apply_stats(row)
-    row.tap do |row|
-      rankers.each { |ranker| ranker.apply_stats(row) }
-    end
+  def apply_stats(row, all_rows)
+    rankers.each { |ranker| ranker.apply_stats(row, all_rows, self) }
   end
 end

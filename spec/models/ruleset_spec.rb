@@ -45,6 +45,7 @@ RSpec.describe Ruleset, type: :model do
   describe "#apply_stats" do
     let(:player) { create(:player) }
     let(:row) { LeaderboardRow.new(player, ruleset) }
+    let(:all_rows) { double("Collection of Leaderboard Rows") }
 
     before do
       create(:tiebreaker, tiebreaker: :most_points)
@@ -52,10 +53,10 @@ RSpec.describe Ruleset, type: :model do
     end
 
     it "should apply complex stats for each tiebreaker" do
-      expect(Ranker::MostPoints).to receive(:apply_stats).with(row)
-      expect(Ranker::FewestPlayed).to receive(:apply_stats).with(row)
+      expect(Ranker::MostPoints).to receive(:apply_stats).with(row, all_rows, ruleset)
+      expect(Ranker::FewestPlayed).to receive(:apply_stats).with(row, all_rows, ruleset)
 
-      ruleset.apply_stats(row)
+      ruleset.apply_stats(row, all_rows)
     end
   end
 end
