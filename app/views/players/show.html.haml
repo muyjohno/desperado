@@ -1,5 +1,5 @@
 %h2= @player.name
-= render "leaderboard/table", rows: [@leaderboard_row] if @leaderboard_row
+= render "leaderboard/table", rows: [@leaderboard_row]
 .row
   %h3= t(:games)
   - @games.keys.sort.each do |week|

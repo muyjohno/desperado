@@ -1,8 +1,5 @@
 RSpec.describe Leaderboard, type: :model do
-  let(:common_player) { create(:player) }
-  let(:game1) { create(:game, corp: common_player, result: :corp_win) }
-  let(:game2) { create(:game, runner: common_player, result: :runner_win) }
-  let(:leaderboard) { create_leaderboard(games: [game1, game2]) }
+  create_sample_leaderboard!
 
   it "should build correct leaderboard" do
     expect(leaderboard.rows.count).to be(3)
@@ -15,6 +12,10 @@ RSpec.describe Leaderboard, type: :model do
     end
 
     let(:row) { leaderboard.row_for(common_player) }
+
+    it "handles invalid player" do
+      expect(leaderboard.row_for(create(:player))).to be_a(Null::LeaderboardRow)
+    end
 
     describe("#played") { it { expect(row.played).to be(2) } }
     describe("#corp_wins") { it { expect(row.corp_wins).to be(1) } }

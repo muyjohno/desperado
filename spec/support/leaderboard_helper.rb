@@ -11,3 +11,10 @@ module LeaderboardHelper
     @ruleset ||= Ruleset.new
   end
 end
+
+def create_sample_leaderboard!
+  let(:common_player) { create(:player) }
+  let(:game1) { create(:game, corp: common_player, result: :corp_win) }
+  let(:game2) { create(:game, runner: common_player, result: :runner_win) }
+  let(:leaderboard) { create_leaderboard(games: [game1, game2]) }
+end

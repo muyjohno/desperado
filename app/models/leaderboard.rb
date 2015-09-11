@@ -8,7 +8,7 @@ class Leaderboard
   end
 
   def sorted_rows
-    rows.sort.tap do |sorted|
+    @sorted_rows ||= rows.sort.tap do |sorted|
       sorted.each_with_index do |row, index|
         row.position = index + 1
       end
@@ -19,11 +19,11 @@ class Leaderboard
     sorted_rows.each do |row|
       return row if row.player == player
     end
-    nil
+    Null::LeaderboardRow.new(player)
   end
 
   def rows
-    @rows_by_player.map do |_, row|
+    @rows ||= @rows_by_player.map do |_, row|
       @ruleset.apply_stats(row)
     end
   end
