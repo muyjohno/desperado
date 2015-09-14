@@ -53,8 +53,10 @@ RSpec.describe Ruleset, type: :model do
     end
 
     it "should apply complex stats for each tiebreaker" do
-      expect(Ranker::MostPoints).to receive(:apply_stats).with(row, all_rows, ruleset)
-      expect(Ranker::FewestPlayed).to receive(:apply_stats).with(row, all_rows, ruleset)
+      expect(Ranker::MostPoints).to receive(:apply_stats).
+        with(row, all_rows, ruleset)
+      expect(Ranker::FewestPlayed).to receive(:apply_stats).
+        with(row, all_rows, ruleset)
 
       ruleset.apply_stats(row, all_rows)
     end

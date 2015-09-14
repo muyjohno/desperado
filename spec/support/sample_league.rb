@@ -12,18 +12,18 @@ def create_sample_league
   let(:ben) { create(:player, name: "Ben") }
   let(:chuck) { create(:player, name: "Chuck") }
 
-  let(:game1) { create(:game, corp: adam, runner: ben, result: :corp_win) }
-  let(:game2) { create(:game, corp: ben, runner: adam, result: :corp_win) }
-  let(:game3) { create(:game, corp: adam, runner: chuck, result: :runner_win) }
-  let(:game4) { create(:game, corp: chuck, runner: adam, result: :corp_win) }
-  let(:game5) { create(:game, corp: ben, runner: chuck, result: :corp_time_win) }
-  let(:game6) { create(:game, corp: chuck, runner: ben, result: :corp_win) }
-  let(:game7) { create(:game, corp: adam, runner: ben, result: :runner_win) }
-  let(:game8) { create(:game, corp: ben, runner: adam, result: :corp_win) }
-  let(:game9) { create(:game, corp: adam, runner: chuck, result: :tie) }
-  let(:game10) { create(:game, corp: chuck, runner: adam, result: :runner_win) }
-  let(:game11) { create(:game, corp: ben, runner: chuck, result: :corp_time_win) }
-  let(:game12) { create(:game, corp: chuck, runner: ben, result: :corp_win) }
+  let(:game1) { create_game(adam, ben, :corp_win) }
+  let(:game2) { create_game(ben, adam, :corp_win) }
+  let(:game3) { create_game(adam, chuck, :runner_win) }
+  let(:game4) { create_game(chuck, adam, :corp_win) }
+  let(:game5) { create_game(ben, chuck, :corp_time_win) }
+  let(:game6) { create_game(chuck, ben, :corp_win) }
+  let(:game7) { create_game(adam, ben, :runner_win) }
+  let(:game8) { create_game(ben, adam, :corp_win) }
+  let(:game9) { create_game(adam, chuck, :tie) }
+  let(:game10) { create_game(chuck, adam, :runner_win) }
+  let(:game11) { create_game(ben, chuck, :corp_time_win) }
+  let(:game12) { create_game(chuck, ben, :corp_win) }
 
   # Breakdown
   # Adam: 2 wins, 5 losses, 1 tie (5 points)

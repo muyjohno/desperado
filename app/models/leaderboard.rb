@@ -24,9 +24,8 @@ class Leaderboard
 
   def rows
     @rows ||= @rows_by_player.map do |_, row|
-      row.tap do |row|
-        @ruleset.apply_stats(row, @rows_by_player)
-      end
+      @ruleset.apply_stats(row, @rows_by_player)
+      row
     end
   end
 

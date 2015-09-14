@@ -1,9 +1,9 @@
 module Ranker
   class Base
-    def self.apply_stats(*args)
+    def self.apply_stats(*)
     end
 
-    def self.compare(*args)
+    def self.compare(*)
       0
     end
   end
