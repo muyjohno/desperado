@@ -20,6 +20,7 @@ RSpec.describe Leaderboard, type: :model do
     describe("#participation_points") do
       it { expect(row.participation_points).to be(8) }
     end
+    describe("#result_points") { it { expect(row.result_points).to be(5) } }
 
     context "with achievement" do
       let(:achievement) { create(:achievement, side: :corp, points: 3) }
