@@ -26,9 +26,9 @@ def create_sample_league
   let(:game12) { create(:game, corp: chuck, runner: ben, result: :corp_win) }
 
   # Breakdown
-  # Adam: 2 wins, 5 losses, 1 tie
-  # Ben: 3 wins, 2 time wins, 3 losses
-  # Chuck: 4 wins, 3 losses, 1 tie
+  # Adam: 2 wins, 5 losses, 1 tie (5 points)
+  # Ben: 3 wins, 2 time wins, 3 losses (8 points)
+  # Chuck: 4 wins, 3 losses, 1 tie (9 points)
 
   let(:games) do
     [
@@ -38,6 +38,10 @@ def create_sample_league
   end
 
   let(:leaderboard) { create_leaderboard(games: games) }
+
+  let(:adam_row) { leaderboard.row_for(adam) }
+  let(:ben_row) { leaderboard.row_for(ben) }
+  let(:chuck_row) { leaderboard.row_for(chuck) }
 end
 
 def create_sample_league!

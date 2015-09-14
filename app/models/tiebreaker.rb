@@ -1,5 +1,10 @@
 class Tiebreaker < ActiveRecord::Base
-  enum tiebreaker: [:most_points, :most_weak_side_wins, :fewest_played]
+  enum tiebreaker: [
+    :most_points,
+    :most_weak_side_wins,
+    :fewest_played,
+    :highest_strength_of_schedule
+  ]
   validates :tiebreaker, uniqueness: true
 
   include RankedModel
