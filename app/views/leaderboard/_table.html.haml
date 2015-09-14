@@ -6,6 +6,7 @@
     %th= t(:wins_by_side)
     %th= t(:participation_points) if participation_points_active?
     %th= t(:achievement_points) if achievement_points_active?
+    %th= t(:strength_of_schedule) if strength_of_schedule_active?
     %th= t(:leaderboard_points)
   - rows.each do |row|
     %tr
@@ -15,4 +16,5 @@
       %td= "#{row.corp_wins}/#{row.runner_wins}"
       %td= row.participation_points if participation_points_active?
       %td= row.achievement_points if achievement_points_active?
+      %td= row.sos if strength_of_schedule_active?
       %td= row.points

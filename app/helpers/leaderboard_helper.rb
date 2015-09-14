@@ -6,4 +6,8 @@ module LeaderboardHelper
   def achievement_points_active?
     Achievement.count > 0
   end
+
+  def strength_of_schedule_active?
+    Tiebreaker.highest_strength_of_schedule.exists?
+  end
 end

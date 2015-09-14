@@ -1,16 +1,14 @@
 class Leaderboard
-  attr_reader :rows
-
   def initialize(games, ruleset)
     @ruleset = ruleset
-    @rows = {}
+    @rows_by_player = {}
     games.each do |game|
       process_game(game)
     end
   end
 
   def sorted_rows
-    rows.map { |_, row| row }.sort.tap do |sorted|
+    @sorted_rows ||= rows.sort.tap do |sorted|
       sorted.each_with_index do |row, index|
         row.position = index + 1
       end
@@ -21,7 +19,14 @@ class Leaderboard
     sorted_rows.each do |row|
       return row if row.player == player
     end
-    nil
+    Null::LeaderboardRow.new(player)
+  end
+
+  def rows
+    @rows ||= @rows_by_player.map do |_, row|
+      @ruleset.apply_stats(row, @rows_by_player)
+      row
+    end
   end
 
   private
@@ -32,6 +37,6 @@ class Leaderboard
   end
 
   def row(player)
-    @rows[player.id] ||= LeaderboardRow.new(player, @ruleset)
+    @rows_by_player[player.id] ||= LeaderboardRow.new(player, @ruleset)
   end
 end

@@ -48,7 +48,7 @@ RSpec.describe PlayersController, type: :controller do
           get :show, id: gameless_player.id
 
           expect(response).to have_http_status(:ok)
-          expect(assigns(:leaderboard_row)).to eq(nil)
+          expect(assigns(:leaderboard_row)).to be_a(Null::LeaderboardRow)
         end
       end
     end
