@@ -33,7 +33,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.include LeaderboardHelper
+  config.include Spec::LeaderboardHelper
   config.include AchievementHelper
   config.include TiebreakerHelper
   config.include GameHelper
