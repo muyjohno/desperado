@@ -47,7 +47,7 @@ RSpec.describe Leaderboard, type: :model do
       end
 
       it "should be able to set and get custom stats" do
-        row.add_stat(:test, 99)
+        row.test = 99
 
         expect(row.test).to eq(99)
       end
