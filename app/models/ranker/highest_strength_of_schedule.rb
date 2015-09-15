@@ -6,7 +6,7 @@ module Ranker
         opponent = game.opponent(row.player)
         sos += all_rows[opponent.id].result_points
       end
-      row.add_stat(:sos, sos)
+      row.sos = sos
     end
 
     def self.compare(a, b)
