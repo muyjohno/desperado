@@ -49,12 +49,10 @@ class LeaderboardRow
     @corp_wins > @runner_wins ? @runner_wins : @corp_wins
   end
 
-  def add_stat(key, value)
-    @extra[key] = value
-  end
+  def method_missing(name, value = nil, *)
+    return @extra[name.to_sym] if @extra.has_key?(name.to_sym)
+    return @extra[name[0...-1].to_sym] = value if /=$/ =~ name
 
-  def method_missing(name)
-    return @extra[name] if @extra.has_key?(name)
     super
   end
 
