@@ -121,4 +121,5 @@ en:
   fewest_played: "Fewest games played"
 
   theme: "Theme"
-  theme_default: "Default theme"
+  theme_default: "Default (blank)"
+  theme_classic: "Classic"
