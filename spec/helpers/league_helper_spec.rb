@@ -10,8 +10,9 @@ RSpec.describe LeagueHelper, type: :helper do
   end
 
   describe "#theme_options" do
-    it "returns the correct options" do
-      expect(helper.theme_options).to eq([[t(:theme_default), "default"]])
+    it "returns options in the correct format" do
+      expect(helper.theme_options).to include([t(:theme_default), "default"])
+      expect(helper.theme_options).to include([t(:theme_classic), "classic"])
     end
   end
 end

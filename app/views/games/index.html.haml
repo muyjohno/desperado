@@ -1,26 +1,28 @@
-%h2= t(:games)
-= link_to new_game_path, class: ["btn", "btn-success"] do
-  %span.glyphicon.glyphicon-plus
-  =t(:add_game)
-%table.table.games
-  %tr
-    %th #
-    %th= t(:week)
-    %th= t(:game_corp_player)
-    %th= t(:game_runner_player)
-    %th= t(:game_result)
-    %th
-  - @games.each do |game|
+.row
+  %h2= t(:games)
+  = link_to new_game_path, class: ["btn", "btn-success"] do
+    %span.glyphicon.glyphicon-plus
+    =t(:add_game)
+.row
+  %table.table.games
     %tr
-      %td= game.id
-      %td= game.week
-      %td{ class: game.player_result(game.corp) }= game.corp.name
-      %td{ class: game.player_result(game.runner) }= game.runner.name
-      %td= t(game.result)
-      %td
-        = link_to edit_game_path(game), class: ["btn", "btn-default"] do
-          %span.glyphicon.glyphicon-pencil
-          = t(:edit_game)
-        = link_to game_path(game), method: :delete, class: ["btn", "btn-danger"], data: { confirm: t(:confirm_delete_game) } do
-          %span.glyphicon.glyphicon-trash
-          = t(:delete_game)
+      %th #
+      %th= t(:week)
+      %th= t(:game_corp_player)
+      %th= t(:game_runner_player)
+      %th= t(:game_result)
+      %th
+    - @games.each do |game|
+      %tr
+        %td= game.id
+        %td= game.week
+        %td{ class: game.player_result(game.corp) }= game.corp.name
+        %td{ class: game.player_result(game.runner) }= game.runner.name
+        %td= t(game.result)
+        %td
+          = link_to edit_game_path(game), class: ["btn", "btn-default"] do
+            %span.glyphicon.glyphicon-pencil
+            = t(:edit_game)
+          = link_to game_path(game), method: :delete, class: ["btn", "btn-danger"], data: { confirm: t(:confirm_delete_game) } do
+            %span.glyphicon.glyphicon-trash
+            = t(:delete_game)

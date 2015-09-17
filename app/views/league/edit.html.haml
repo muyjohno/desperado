@@ -1,27 +1,29 @@
-= render "navigation", active: :league
-%h2= t(:edit_league)
-= form_for @league, url: update_league_path, html: { class: "form-horizontal" } do |f|
-  .form-group
-    = f.label :name, t(:league_name), class: ["col-sm-2", "control-label"]
-    .col-sm-10
-      = f.text_field :name, class: "form-control"
-  .form-group
-    = f.label :rules_content, t(:league_rules), class: ["col-sm-2", "control-label"]
-    .col-sm-10
-      = f.text_area :rules_content, class: "form-control", rows: 5
-  .form-group
-    = f.label :home_content, t(:homepage_content), class: ["col-sm-2", "control-label"]
-    .col-sm-10
-      = f.text_area :home_content, class: "form-control", rows: 5
-  .form-group
-    = f.label :theme, t(:theme), class: ["col-sm-2", "control-label"]
-    .col-sm-10
-      = f.select :theme, theme_options, class: "form-control"
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = button_tag class: ["btn", "btn-success"] do
-        %span.glyphicon.glyphicon-pencil
-        = t(:save_league)
-      %a.btn.btn-danger{ href: root_path }
-        %span.glyphicon.glyphicon-remove
-        = t(:cancel)
+.row
+  = render "navigation", active: :league
+  %h2= t(:edit_league)
+.row
+  = form_for @league, url: update_league_path, html: { class: "form-horizontal" } do |f|
+    .form-group
+      = f.label :name, t(:league_name), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.text_field :name, class: "form-control"
+    .form-group
+      = f.label :rules_content, t(:league_rules), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.text_area :rules_content, class: "form-control", rows: 5
+    .form-group
+      = f.label :home_content, t(:homepage_content), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.text_area :home_content, class: "form-control", rows: 5
+    .form-group
+      = f.label :theme, t(:theme), class: ["col-sm-2", "control-label"]
+      .col-sm-10
+        = f.select :theme, theme_options, {}, class: "form-control"
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = button_tag class: ["btn", "btn-success"] do
+          %span.glyphicon.glyphicon-pencil
+          = t(:save_league)
+        %a.btn.btn-danger{ href: root_path }
+          %span.glyphicon.glyphicon-remove
+          = t(:cancel)
