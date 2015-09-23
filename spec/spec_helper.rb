@@ -2,6 +2,7 @@ ENV["RAILS_ENV"] ||= "test"
 
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
+require "capybara/rspec"
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!

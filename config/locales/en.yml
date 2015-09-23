@@ -18,6 +18,8 @@ en:
   log_out: "Jack out"
   logout_success: "Jacked out!"
   not_authorised: "Not authorised"
+  username: "Username"
+  password: "Password"
 
   home: "Home"
   admin: "Admin"
@@ -114,6 +116,7 @@ en:
   leaderboard_points: "Points"
 
   edit_tiebreakers: "Edit Tiebreakers"
+  add_tiebreaker: "Add Tiebreaker"
   added_tiebreaker: "Added tiebreaker"
   removed_tiebreaker: "Removed tiebreaker"
   most_points: "Most points"
