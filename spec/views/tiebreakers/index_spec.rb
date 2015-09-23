@@ -2,7 +2,9 @@ RSpec.describe "tiebreakers/index.html.haml", type: :view do
   before do
     tiebreakers = [].tap do |collection|
       collection << create(:tiebreaker, tiebreaker: :most_points)
-      collection << create(:tiebreaker, tiebreaker: :highest_strength_of_schedule)
+      collection << create(:tiebreaker,
+        tiebreaker: :highest_strength_of_schedule
+      )
       collection << create(:tiebreaker, tiebreaker: :fewest_played)
     end
 

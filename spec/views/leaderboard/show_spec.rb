@@ -20,6 +20,8 @@ RSpec.describe "leaderboard/show.html.haml", type: :view do
   end
 
   it "should display recent games" do
-    expect(rendered).to have_content("Chuck (Corp) played Ben (Runner): Chuck Win")
+    expect(rendered).to have_content(
+      "Chuck (Corp) played Ben (Runner): Chuck Win"
+    )
   end
 end

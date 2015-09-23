@@ -6,7 +6,7 @@ RSpec.describe "players/show.html.haml", type: :view do
     assign(:player, adam)
     assign(:leaderboard_row, adam_row)
     assign(:achievements, Achievement.all)
-    assign(:games, adam.games.group_by{ |g| g.week.to_i })
+    assign(:games, adam.games.group_by { |g| g.week.to_i })
 
     render
   end
