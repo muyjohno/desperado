@@ -59,12 +59,12 @@ class Game < ActiveRecord::Base
     Null::Player.new
   end
 
-  def corp
-    super || Null::Player.new
+  def corp_player
+    corp || Null::Player.new
   end
 
-  def runner
-    super || Null::Player.new
+  def runner_player
+    runner || Null::Player.new
   end
 
   def add_achievement(achievement)

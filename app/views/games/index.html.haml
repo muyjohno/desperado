@@ -16,8 +16,8 @@
       %tr
         %td= game.id
         %td= game.week
-        %td{ class: game.player_result(game.corp) }= game.corp.name
-        %td{ class: game.player_result(game.runner) }= game.runner.name
+        %td{ class: game.player_result(game.corp_player) }= game.corp_player.name
+        %td{ class: game.player_result(game.runner_player) }= game.runner_player.name
         %td= t(game.result)
         %td
           = link_to edit_game_path(game), class: ["btn", "btn-default"] do
