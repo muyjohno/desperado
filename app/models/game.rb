@@ -59,6 +59,14 @@ class Game < ActiveRecord::Base
     Null::Player.new
   end
 
+  def corp
+    super || Null::Player.new
+  end
+
+  def runner
+    super || Null::Player.new
+  end
+
   def add_achievement(achievement)
     earned_achievements << EarnedAchievement.new(
       achievement: achievement,

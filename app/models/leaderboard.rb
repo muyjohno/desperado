@@ -32,8 +32,8 @@ class Leaderboard
   private
 
   def process_game(game)
-    row(game.corp).add_game(game)
-    row(game.runner).add_game(game)
+    row(game.corp).add_game(game) if game.corp_id
+    row(game.runner).add_game(game) if game.runner_id
   end
 
   def row(player)

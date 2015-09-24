@@ -16,6 +16,10 @@ module GamesHelper
   end
 
   def played_side_against_opponent(game, player)
+    return t(:bye_game_title,
+      bye_player: link_player(player)
+    ).html_safe if game.bye?
+
     t(:played_side_against_opponent,
       side: game.side(player).to_s.titleize,
       opponent: link_player(game.opponent(player))
@@ -23,6 +27,10 @@ module GamesHelper
   end
 
   def neutral_game_title(game)
+    return t(:bye_game_title,
+      bye_player: link_player(game.bye_player)
+    ).html_safe if game.bye?
+
     t(:neutral_game_title,
       corp_player: link_player(game.corp),
       runner_player: link_player(game.runner),

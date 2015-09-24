@@ -325,4 +325,17 @@ RSpec.describe Game, type: :model do
       end
     end
   end
+
+  context "nil player" do
+    let(:corpless) { build(:game, corp_id: nil) }
+    let(:runnerless) { build(:game, runner_id: nil) }
+
+    it "should return Null::Player corp" do
+      expect(corpless.corp).to be_a(Null::Player)
+    end
+
+    it "should return Null::Player runner" do
+      expect(runnerless.runner).to be_a(Null::Player)
+    end
+  end
 end

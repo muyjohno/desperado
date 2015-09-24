@@ -63,6 +63,7 @@ en:
   played_side_against_opponent: "Played %{side} against %{opponent}:"
   neutral_game_title: "%{corp_player} (Corp) played %{runner_player} (Runner): %{result}"
   week_number: "Week %{week}"
+  bye_game_title: "%{bye_player} had a bye"
 
   achievements: "Achievements"
   manage_achievements: "Manage achievements"
