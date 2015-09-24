@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
-  validates :corp, :runner, :result, presence: true
+  validates :corp, :runner, :result, presence: true, unless: "bye?"
+  validate :exactly_one_player_for_bye
   validate :cannot_play_self
 
   belongs_to :corp, class_name: "Player"
@@ -8,15 +9,16 @@ class Game < ActiveRecord::Base
   has_many :earned_achievements, dependent: :destroy
   has_many :achievements, through: :earned_achievements
 
-  enum result: %w(corp_win runner_win corp_time_win runner_time_win tie)
+  enum result: %w(corp_win runner_win corp_time_win runner_time_win tie bye)
 
   scope :recent, -> { order(week: :desc, created_at: :desc).limit(10) }
 
   def player_result(player)
+    return :bye if bye? && side(player)
     return :win if player_win?(player)
     return :time_win if player_time_win?(player)
     return :tie if tie?
-    :loss
+    return :loss if side(player)
   end
 
   def player_win?(player)
@@ -50,6 +52,13 @@ class Game < ActiveRecord::Base
     Null::Player.new
   end
 
+  def bye_player
+    return runner if runner_id
+    return corp if corp_id
+
+    Null::Player.new
+  end
+
   def add_achievement(achievement)
     earned_achievements << EarnedAchievement.new(
       achievement: achievement,
@@ -75,5 +84,12 @@ class Game < ActiveRecord::Base
 
   def cannot_play_self
     errors.add(:runner, "cannot play self") unless corp_id != runner_id
+  end
+
+  def exactly_one_player_for_bye
+    return unless bye?
+
+    errors.add(:result, "cannot be bye with two players") if corp_id && runner_id
+    errors.add(:result, "cannot be bye with no players") unless corp_id || runner_id
   end
 end

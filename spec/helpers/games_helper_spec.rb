@@ -5,7 +5,8 @@ RSpec.describe GamesHelper, type: :helper do
       [t(:runner_win).titleize, "runner_win"],
       [t(:corp_time_win).titleize, "corp_time_win"],
       [t(:runner_time_win).titleize, "runner_time_win"],
-      [t(:tie).titleize, "tie"]
+      [t(:tie).titleize, "tie"],
+      [t(:bye).titleize, "bye"]
     ])
   end
 

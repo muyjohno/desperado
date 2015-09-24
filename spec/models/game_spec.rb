@@ -63,6 +63,7 @@ RSpec.describe Game, type: :model do
     let(:corp) { create(:player) }
     let(:runner) { create(:player) }
     let(:game) { create(:game, runner: runner, corp: corp) }
+    let(:unrelated) { create(:player) }
 
     context "corp win" do
       before { game.result = :corp_win }
@@ -70,6 +71,10 @@ RSpec.describe Game, type: :model do
       it "returns correct results" do
         expect(game.player_result(corp)).to be(:win)
         expect(game.player_result(runner)).to be(:loss)
+      end
+
+      it "unrelated player returns nil" do
+        expect(game.player_result(unrelated)).to be(nil)
       end
     end
 
@@ -106,6 +111,18 @@ RSpec.describe Game, type: :model do
       it "returns correct results" do
         expect(game.player_result(corp)).to be(:tie)
         expect(game.player_result(runner)).to be(:tie)
+      end
+    end
+
+    context "bye" do
+      before do
+        game.result = :bye
+        game.runner = nil
+      end
+
+      it "returns correct results" do
+        expect(game.player_result(corp)).to be(:bye)
+        expect(game.player_result(runner)).to be(nil)
       end
     end
   end
@@ -268,6 +285,43 @@ RSpec.describe Game, type: :model do
         else
           expect(recent).to include(game)
         end
+      end
+    end
+  end
+
+  describe "byes" do
+    let(:player) { create(:player) }
+    let(:game) { create(:game, corp: player, runner: nil, result: :bye) }
+
+    it { expect(game).to be_valid }
+
+    describe "validation" do
+      context "no players" do
+        before do
+          game.corp = nil
+        end
+
+        it "shouldn't be valid" do
+          expect(game).not_to be_valid
+          expect(game.errors[:result]).not_to be_empty
+        end
+      end
+
+      context "two players" do
+        before do
+          game.runner = create(:player)
+        end
+
+        it "shouldn't be valid" do
+          expect(game).not_to be_valid
+          expect(game.errors[:result]).not_to be_empty
+        end
+      end
+    end
+
+    describe "#bye_player" do
+      it "should return correct player" do
+        expect(game.bye_player).to be(player)
       end
     end
   end
