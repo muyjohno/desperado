@@ -21,6 +21,7 @@ RSpec.describe Leaderboard, type: :model do
       it { expect(row.participation_points).to be(8) }
     end
     describe("#result_points") { it { expect(row.result_points).to be(5) } }
+    describe("#byes") { it { expect(row.byes).to be(0) } }
 
     context "with achievement" do
       let(:achievement) { create(:achievement, side: :corp, points: 3) }
@@ -66,5 +67,19 @@ RSpec.describe Leaderboard, type: :model do
     it "correctly sorts rows" do
       expect(sorted.first.player).to be(chuck)
     end
+  end
+
+  context "with bye" do
+    before do
+      create(:game, corp: adam, runner_id: nil, result: :bye)
+      create(:rule, key: :points_for_bye, value: 5)
+      games
+    end
+
+    let(:leaderboard) { create_leaderboard(games: Game.all) }
+    let(:row) { leaderboard.row_for(adam) }
+
+    describe("#byes") { it { expect(row.byes).to be(1) } }
+    describe("#points") { it { expect(row.points).to be(19) } }
   end
 end

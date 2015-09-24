@@ -9,6 +9,7 @@ class Rule < ActiveRecord::Base
     :points_for_loss,
     :points_for_tie,
     :points_for_time_win,
+    :points_for_bye,
     :points_for_participation,
     :max_points_for_participation
   ]
