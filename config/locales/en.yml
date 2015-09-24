@@ -108,6 +108,7 @@ en:
   points_for_loss: "Points awarded for a Loss"
   points_for_tie: "Points awarded for a Tie"
   points_for_time_win: "Points awarded for a Time Win"
+  points_for_bye: "Points awarded for a Bye"
   points_for_participation: "Participation points per game"
   max_points_for_participation: "Max. participation points in a season"
 
