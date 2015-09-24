@@ -97,7 +97,7 @@ class Game < ActiveRecord::Base
   def exactly_one_player_for_bye
     return unless bye?
 
-    errors.add(:result, "cannot be bye with two players") if corp_id && runner_id
-    errors.add(:result, "cannot be bye with no players") unless corp_id || runner_id
+    errors.add(:result, "cannot be bye with two players") if corp && runner
+    errors.add(:result, "cannot be bye with no players") unless corp || runner
   end
 end
