@@ -11,6 +11,7 @@ en:
   win: "Win"
   time_win: "Time win"
   loss: "Loss"
+  bye: "Bye win"
 
   log_in: "Jack in"
   login_success: "Jacked in!"
@@ -44,6 +45,7 @@ en:
   game_week: "Week"
   game_corp_player: "Corp player"
   game_runner_player: "Runner player"
+  select_player: "Select player"
   game_result: "Result"
   add_game: "Add game"
   add_game_reverse_instruction: "Select a result to add reverse game at the same time"
@@ -61,6 +63,7 @@ en:
   played_side_against_opponent: "Played %{side} against %{opponent}:"
   neutral_game_title: "%{corp_player} (Corp) played %{runner_player} (Runner): %{result}"
   week_number: "Week %{week}"
+  bye_game_title: "%{bye_player} had a bye"
 
   achievements: "Achievements"
   manage_achievements: "Manage achievements"
@@ -105,6 +108,7 @@ en:
   points_for_loss: "Points awarded for a Loss"
   points_for_tie: "Points awarded for a Tie"
   points_for_time_win: "Points awarded for a Time Win"
+  points_for_bye: "Points awarded for a Bye"
   points_for_participation: "Participation points per game"
   max_points_for_participation: "Max. participation points in a season"
 

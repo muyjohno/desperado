@@ -7,11 +7,11 @@
     .form-group
       = f.label :corp_id, t(:game_corp_player), class: ["col-sm-2", "control-label"]
       .col-sm-10
-        = f.collection_select :corp_id, Player.all, :id, :name, {}, class: "form-control"
+        = f.collection_select :corp_id, Player.all, :id, :name, { include_blank: t(:select_player) }, class: "form-control"
     .form-group
       = f.label :corp_id, t(:game_runner_player), class: ["col-sm-2", "control-label"]
       .col-sm-10
-        = f.collection_select :runner_id, Player.all, :id, :name, {}, class: "form-control"
+        = f.collection_select :runner_id, Player.all, :id, :name, { include_blank: t(:select_player) }, class: "form-control"
     .form-group
       = f.label :result, t(:game_result), class: ["col-sm-2", "control-label"]
       .col-sm-10

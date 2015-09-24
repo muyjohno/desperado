@@ -2,7 +2,7 @@ class LeaderboardRow
   include Comparable
 
   attr_accessor :position
-  attr_reader :player, :points, :played, :corp_wins, :runner_wins
+  attr_reader :player, :points, :played, :corp_wins, :runner_wins, :byes
   attr_reader :result_points, :participation_points, :achievement_points
 
   delegate :points_for_result, to: :@ruleset
@@ -18,6 +18,7 @@ class LeaderboardRow
     @result_points = 0
     @participation_points = 0
     @achievement_points = 0
+    @byes = 0
     @extra = {}
 
     @ruleset = ruleset
@@ -27,6 +28,7 @@ class LeaderboardRow
     @played += 1
     @corp_wins += 1 if corp?(game) && result(game) == :win
     @runner_wins += 1 if runner?(game) && result(game) == :win
+    @byes += 1 if result(game) == :bye
     points_for_result(result(game)).tap do |rp|
       @points += rp
       @result_points += rp

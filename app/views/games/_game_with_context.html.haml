@@ -2,7 +2,8 @@
   .panel.panel-default{ class: game.player_result(player) }
     .panel-heading
       = played_side_against_opponent(game, player)
-      %span.result= t(game.player_result(player))
+      - unless game.bye?
+        %span.result= t(game.player_result(player))
     - if game.player_achievements(player).any?
       .panel-body
         - game.player_achievements(player).each do |ach|
