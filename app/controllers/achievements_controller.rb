@@ -15,7 +15,7 @@ class AchievementsController < ApplicationController
 
   def create
     if Achievement.new(achievement_params).save
-      redirect_to achievements_path, notice: t(:created_achievement)
+      redirect_to manage_achievements_path, notice: t(:created_achievement)
     else
       flash.now.alert = t(:create_achievement_failed)
       render :new
@@ -29,7 +29,7 @@ class AchievementsController < ApplicationController
   def update
     @achievement = find_achievement
     if @achievement.update_attributes(achievement_params)
-      redirect_to achievements_path, notice: t(:updated_achievement)
+      redirect_to manage_achievements_path, notice: t(:updated_achievement)
     else
       flash.now.alert = t(:update_achievement_failed)
       render :edit

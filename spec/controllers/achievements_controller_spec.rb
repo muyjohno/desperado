@@ -67,6 +67,7 @@ RSpec.describe AchievementsController, type: :controller do
         end.to change{ Achievement.count }.by(1)
 
         expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(manage_achievements_path)
         expect(flash[:notice]).to eq(I18n.t(:created_achievement))
       end
 
@@ -102,6 +103,7 @@ RSpec.describe AchievementsController, type: :controller do
         post :update, id: achievement.id, achievement: { side: :runner }
 
         expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(manage_achievements_path)
         expect(flash[:notice]).to eq(I18n.t(:updated_achievement))
       end
 
