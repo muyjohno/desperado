@@ -7,18 +7,6 @@ class Ruleset
     0
   end
 
-  def points_for_result(result)
-    Rule.value_for("points_for_#{result}", 0)
-  end
-
-  def points_for_participation(current)
-    max = Rule.value_for("max_points_for_participation", 100)
-    Rule.value_for("points_for_participation", 0).tap do |points|
-      return 0 if current >= max
-      return (max - current) if (current + points) >= max
-    end
-  end
-
   def rankers
     Tiebreaker.ordered.map do |t|
       "Ranker::#{t.tiebreaker.camelize}".constantize
@@ -27,5 +15,9 @@ class Ruleset
 
   def apply_stats(row, all_rows)
     rankers.each { |ranker| ranker.apply_stats(row, all_rows, self) }
+  end
+
+  def points_for(what, game, row)
+    "Points::#{what.to_s.titleize}".constantize.new.calculate(game, row)
   end
 end

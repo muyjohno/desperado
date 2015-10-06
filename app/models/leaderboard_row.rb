@@ -4,6 +4,7 @@ class LeaderboardRow
   attr_accessor :position
   attr_reader :player, :points, :played, :corp_wins, :runner_wins, :byes
   attr_reader :result_points, :participation_points, :achievement_points
+  attr_reader :games
 
   delegate :points_for_result, to: :@ruleset
   delegate :points_for_participation, to: :@ruleset
@@ -20,24 +21,26 @@ class LeaderboardRow
     @achievement_points = 0
     @byes = 0
     @extra = {}
+    @games = []
 
     @ruleset = ruleset
   end
 
   def add_game(game)
+    @games << game
     @played += 1
     @corp_wins += 1 if corp?(game) && result(game) == :win
     @runner_wins += 1 if runner?(game) && result(game) == :win
     @byes += 1 if result(game) == :bye
-    points_for_result(result(game)).tap do |rp|
+    points_for(:result, game).tap do |rp|
       @points += rp
       @result_points += rp
     end
-    game.points_for_achievements(@player).tap do |ap|
+    points_for(:achievement, game).tap do |ap|
       @points += ap
       @achievement_points += ap
     end
-    points_for_participation(@participation_points).tap do |pp|
+    points_for(:participation, game).tap do |pp|
       @points += pp
       @participation_points += pp
     end
@@ -58,6 +61,10 @@ class LeaderboardRow
     super
   end
 
+  def games_for_week(week)
+    @games.select { |g| g.week == week }
+  end
+
   private
 
   def runner?(game)
@@ -70,5 +77,9 @@ class LeaderboardRow
 
   def result(game)
     game.player_result(@player)
+  end
+
+  def points_for(what, game)
+    @ruleset.points_for(what, game, self)
   end
 end

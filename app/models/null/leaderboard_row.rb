@@ -32,5 +32,13 @@ module Null
     def points
       0
     end
+
+    def games
+      []
+    end
+
+    def games_for_week(_)
+      []
+    end
   end
 end
