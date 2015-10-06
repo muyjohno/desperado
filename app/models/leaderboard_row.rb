@@ -36,7 +36,7 @@ class LeaderboardRow
       @points += rp
       @result_points += rp
     end
-    game.points_for_achievements(@player).tap do |ap|
+    points_for(:achievement, game).tap do |ap|
       @points += ap
       @achievement_points += ap
     end
