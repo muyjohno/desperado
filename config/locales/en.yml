@@ -119,6 +119,7 @@ en:
   participation_points: "Participation points"
   achievement_points: "Achievement points"
   leaderboard_points: "Points"
+  no_games: "No games have been recorded yet!"
 
   edit_tiebreakers: "Edit Tiebreakers"
   add_tiebreaker: "Add Tiebreaker"
