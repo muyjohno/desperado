@@ -3,6 +3,8 @@
 *Desperado* is a framework for league software for Android: Netrunner
 using Ruby on Rails
 
+[![Circle CI](https://circleci.com/gh/muyjohno/desperado.svg?style=svg)](https://circleci.com/gh/muyjohno/desperado)
+
 ## Deploying a new instance
 
 - Sign up for free Heroku account  
