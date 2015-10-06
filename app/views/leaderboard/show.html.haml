@@ -1,7 +1,12 @@
-.row
-  = raw @content
-.row
-  = render "table", rows: @leaderboard
-.row
-  %h3= t(:recent_games)
-  = render "games/list", games: @recent_games
+- if @content
+  .row
+    = raw @content
+- if @leaderboard.count > 0
+  .row
+    = render "table", rows: @leaderboard
+  .row
+    %h3= t(:recent_games)
+    = render "games/list", games: @recent_games
+- else
+  .row
+    = t(:no_games)
