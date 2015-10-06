@@ -40,19 +40,21 @@ RSpec.describe Points::Participation, type: :model do
     it { expect(subject.calculate(game1, adam_row)).to eq(5) }
 
     context "some games played" do
-      let(:leaderboard) { create_leaderboard(games: [game1]) }
+      let(:leaderboard) { create_leaderboard(games: [game1, game2]) }
 
       it { expect(subject.calculate(game2, adam_row)).to eq(2) }
     end
 
     context "at max" do
-      let(:leaderboard) { create_leaderboard(games: [game1, game2]) }
+      let(:leaderboard) { create_leaderboard(games: [game1, game2, game3]) }
 
       it { expect(subject.calculate(game3, adam_row)).to eq(0) }
     end
 
     context "subsequent week" do
-      let(:leaderboard) { create_leaderboard(games: [game1, game2]) }
+      let(:leaderboard) do
+        create_leaderboard(games: [game1, game2, new_week_game])
+      end
       let(:new_week_game) { create(:game, corp: adam, runner: ben, week: 2) }
 
       it { expect(subject.calculate(new_week_game, adam_row)).to eq(5) }
