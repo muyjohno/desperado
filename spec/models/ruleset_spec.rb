@@ -5,23 +5,19 @@ RSpec.describe Ruleset, type: :model do
     create(:rule, key: "max_points_for_participation", value: 5)
   end
 
-  describe "#points_for_participation" do
-    context "full amount" do
-      it do
-        expect(ruleset.points_for_participation(0)).to eq(3)
-      end
+  describe "#points_for" do
+    let(:game) { double("game") }
+    let(:row) { double("row") }
+    let(:calculator) { double("Points::Result.new") }
+
+    before do
+      allow(Points::Result).to receive(:new).and_return(calculator)
     end
 
-    context "partial" do
-      it do
-        expect(ruleset.points_for_participation(3)).to eq(2)
-      end
-    end
+    it "should instantiate and use correct points calculator" do
+      expect(calculator).to receive(:calculate).with(game, row)
 
-    context "none" do
-      it do
-        expect(ruleset.points_for_participation(5)).to eq(0)
-      end
+      ruleset.points_for(:result, game, row)
     end
   end
 

@@ -27,11 +27,12 @@ class LeaderboardRow
   end
 
   def add_game(game)
+    @games << game
     @played += 1
     @corp_wins += 1 if corp?(game) && result(game) == :win
     @runner_wins += 1 if runner?(game) && result(game) == :win
     @byes += 1 if result(game) == :bye
-    points_for_result(result(game)).tap do |rp|
+    points_for(:result, game).tap do |rp|
       @points += rp
       @result_points += rp
     end
@@ -39,11 +40,10 @@ class LeaderboardRow
       @points += ap
       @achievement_points += ap
     end
-    points_for_participation(@participation_points).tap do |pp|
+    points_for(:participation, game).tap do |pp|
       @points += pp
       @participation_points += pp
     end
-    @games << game
   end
 
   def <=>(other)
@@ -61,6 +61,10 @@ class LeaderboardRow
     super
   end
 
+  def games_for_week(week)
+    @games.select{ |g| g.week == week }
+  end
+
   private
 
   def runner?(game)
@@ -73,5 +77,9 @@ class LeaderboardRow
 
   def result(game)
     game.player_result(@player)
+  end
+
+  def points_for(what, game)
+    @ruleset.points_for(what, game, self)
   end
 end

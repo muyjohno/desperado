@@ -28,6 +28,15 @@ RSpec.describe Leaderboard, type: :model do
       it { expect(row.games).not_to include(game5) }
     end
 
+    describe("#games_for_week") do
+      let(:week2_game) { create(:game, corp: adam, runner: ben, week: 2) }
+      let(:leaderboard) { create_leaderboard(games: [game1, game2, week2_game]) }
+
+      it { expect(row.games_for_week(1).count).to be(2) }
+      it { expect(row.games_for_week(1)).to include(game1) }
+      it { expect(row.games_for_week(1)).not_to include(week2_game) }
+    end
+
     context "with achievement" do
       let(:achievement) { create(:achievement, side: :corp, points: 3) }
       let!(:ea) do
