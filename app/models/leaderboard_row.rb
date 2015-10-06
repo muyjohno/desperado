@@ -4,6 +4,7 @@ class LeaderboardRow
   attr_accessor :position
   attr_reader :player, :points, :played, :corp_wins, :runner_wins, :byes
   attr_reader :result_points, :participation_points, :achievement_points
+  attr_reader :games
 
   delegate :points_for_result, to: :@ruleset
   delegate :points_for_participation, to: :@ruleset
@@ -20,6 +21,7 @@ class LeaderboardRow
     @achievement_points = 0
     @byes = 0
     @extra = {}
+    @games = []
 
     @ruleset = ruleset
   end
@@ -41,6 +43,7 @@ class LeaderboardRow
       @points += pp
       @participation_points += pp
     end
+    @games << game
   end
 
   def <=>(other)
