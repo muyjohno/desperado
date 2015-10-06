@@ -62,7 +62,7 @@ class LeaderboardRow
   end
 
   def games_for_week(week)
-    @games.select{ |g| g.week == week }
+    @games.select { |g| g.week == week }
   end
 
   private

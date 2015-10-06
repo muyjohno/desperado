@@ -30,7 +30,9 @@ RSpec.describe Leaderboard, type: :model do
 
     describe("#games_for_week") do
       let(:week2_game) { create(:game, corp: adam, runner: ben, week: 2) }
-      let(:leaderboard) { create_leaderboard(games: [game1, game2, week2_game]) }
+      let(:leaderboard) do
+        create_leaderboard(games: [game1, game2, week2_game])
+      end
 
       it { expect(row.games_for_week(1).count).to be(2) }
       it { expect(row.games_for_week(1)).to include(game1) }

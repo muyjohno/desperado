@@ -4,19 +4,16 @@ module Points
       @game = game
       @row = row
 
-      points_for_participation.tap do |points|
-        return 0 if current >= max || week_current >= week_max
-        return (max - current) if (current + points) >= max
-        return (week_max - week_current) if (week_current + points) >= week_max
-      end
+      points = [points_for_participation, total_remaining, week_remaining].min
+      [points, 0].max
     end
 
-    def max
-      @max = Rule.value_for("max_points_for_participation", 100)
+    def total_remaining
+      Rule.value_for("max_points_for_participation", 100) - current
     end
 
-    def week_max
-      @week_max = Rule.value_for("max_points_for_participation_per_week", 100)
+    def week_remaining
+      Rule.value_for("max_points_for_participation_per_week", 100) - weekly
     end
 
     def points_for_participation
@@ -29,8 +26,8 @@ module Points
       @current = @row.participation_points
     end
 
-    def week_current
-      @week_current = games_for_week.length * points_for_participation
+    def weekly
+      @weekly = games_for_week.length * points_for_participation
     end
 
     def games_for_week
