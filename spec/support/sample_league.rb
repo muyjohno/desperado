@@ -22,7 +22,7 @@ def create_sample_league
   let(:game8) { create_game(ben, adam, :corp_win) }
   let(:game9) { create_game(adam, chuck, :tie) }
   let(:game10) { create_game(chuck, adam, :runner_win) }
-  let(:game11) { create_game(ben, chuck, :corp_time_win) }
+  let(:game11) { create_game(ben, chuck, :runner_time_win) }
   let(:game12) { create_game(chuck, ben, :corp_win) }
 
   # Breakdown

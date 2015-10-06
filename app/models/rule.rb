@@ -11,7 +11,8 @@ class Rule < ActiveRecord::Base
     :points_for_time_win,
     :points_for_bye,
     :points_for_participation,
-    :max_points_for_participation
+    :max_points_for_participation,
+    :max_points_for_participation_per_week
   ]
 
   def self.value_for(key, default = nil)

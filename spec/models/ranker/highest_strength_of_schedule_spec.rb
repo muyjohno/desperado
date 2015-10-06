@@ -8,8 +8,8 @@ RSpec.describe Ranker::HighestStrengthOfSchedule, type: :model do
 
   it "should contain special data about strength of schedule" do
     expect(adam_row.sos).to eq(68)
-    expect(ben_row.sos).to eq(56)
-    expect(chuck_row.sos).to eq(52)
+    expect(ben_row.sos).to eq(60)
+    expect(chuck_row.sos).to eq(48)
   end
 
   it "should rank by sos" do
