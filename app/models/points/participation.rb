@@ -27,7 +27,7 @@ module Points
     end
 
     def weekly
-      @weekly = (games_for_week.length-1) * points_for_participation
+      @weekly = (games_for_week.length - 1) * points_for_participation
     end
 
     def games_for_week
