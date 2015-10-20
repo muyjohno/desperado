@@ -114,9 +114,12 @@ RSpec.describe PlayersController, type: :controller do
 
       it "updates player" do
         expect_any_instance_of(Player).to receive(:update_attributes)
-          .with("name" => "New name")
+          .with("name" => "New name", "notes" => "New notes")
 
-        post :update, id: player.id, player: { name: "New name" }
+        post :update, id: player.id, player: {
+          name: "New name",
+          notes: "New notes"
+        }
       end
 
       it "fails correctly" do

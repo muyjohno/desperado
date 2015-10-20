@@ -28,6 +28,7 @@ en:
   players: "Players"
   manage_players: "Manage players"
   player_name: "Name"
+  player_notes: "Notes"
   add_player: "Add player"
   created_player: "Created player"
   create_player_failed: "Couldn't create player"

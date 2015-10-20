@@ -10,11 +10,13 @@
     %tr
       %th #
       %th= t(:player_name)
+      %th= t(:player_notes)
       %th
     - @players.each do |player|
       %tr
         %td= player.id
         %td= player.name
+        %td= player.notes
         %td
           = link_to edit_player_path(player), class: ["btn", "btn-default"] do
             %span.glyphicon.glyphicon-pencil
