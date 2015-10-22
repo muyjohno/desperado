@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :authorise
 
   def index
-    @games = Game.all
+    @games = Game.by_week.page(page_param).per(20)
   end
 
   def new
@@ -76,5 +76,9 @@ class GamesController < ApplicationController
 
   def find_game
     Game.find(params[:id])
+  end
+
+  def page_param
+    params[:page] || 1
   end
 end
