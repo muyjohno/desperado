@@ -133,3 +133,10 @@ en:
   theme: "Theme"
   theme_default: "Default (blank)"
   theme_classic: "Classic"
+
+  views:
+    pagination:
+      previous: "Previous"
+      next: "Next"
+      first: "First"
+      last: "Last"

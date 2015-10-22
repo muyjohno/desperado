@@ -11,18 +11,40 @@ RSpec.describe GamesController, type: :controller do
 
     describe "GET index" do
       before do
-        get :index
+        21.times { create(:game) }
       end
 
       it "is successful" do
+        get :index
+
         expect(response).to have_http_status(:ok)
         expect(response).to render_template(:index)
       end
 
       it "assigns games correctly" do
+        get :index
+
         expect(assigns(:games)).to be_a(ActiveRecord::Relation)
         assigns(:games).each do |row|
           expect(row).to be_a(Game)
+        end
+      end
+
+      describe "pagination" do
+        it "displays correct games on page one" do
+          get :index
+
+          expect(assigns(:games)).to include(Game.last)
+          expect(assigns(:games)).to include(Game.second)
+          expect(assigns(:games)).not_to include(Game.first)
+        end
+
+        it "displays correct games on page two" do
+          get :index, page: 2
+
+          expect(assigns(:games)).not_to include(Game.last)
+          expect(assigns(:games)).not_to include(Game.second)
+          expect(assigns(:games)).to include(Game.first)
         end
       end
     end

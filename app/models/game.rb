@@ -11,7 +11,8 @@ class Game < ActiveRecord::Base
 
   enum result: %w(corp_win runner_win corp_time_win runner_time_win tie bye)
 
-  scope :recent, -> { order(week: :desc, created_at: :desc).limit(10) }
+  scope :by_week, -> { order(week: :desc, created_at: :desc) }
+  scope :recent, -> { by_week.limit(10) }
 
   def player_result(player)
     return :bye if bye? && side(player)

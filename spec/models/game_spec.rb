@@ -289,6 +289,24 @@ RSpec.describe Game, type: :model do
     end
   end
 
+  describe ".by_week" do
+    let!(:games) do
+      [].tap do |games|
+        11.times do
+          games << create(:game, week: 2)
+        end
+        games << create(:game, week: 1)
+      end
+    end
+    let(:by_week) { Game.by_week }
+
+    it "returns correct order" do
+      expect(by_week.first).to eq(games[10])
+      expect(by_week.second).to eq(games[9])
+      expect(by_week.last).to eq(games.last)
+    end
+  end
+
   describe "byes" do
     let(:player) { create(:player) }
     let(:game) { create(:game, corp: player, runner: nil, result: :bye) }
