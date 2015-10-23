@@ -27,3 +27,6 @@ Style/FileName:
   Exclude:
     - '**/Gemfile'
     - '**/Rakefile'
+
+Style/DotPosition:
+  EnforcedStyle: leading
