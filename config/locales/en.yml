@@ -1,5 +1,7 @@
 en:
   cancel: "Cancel"
+  filter: "Filter"
+  clear_filters: "Clear filters"
 
   corp: "Corp"
   runner: "Runner"

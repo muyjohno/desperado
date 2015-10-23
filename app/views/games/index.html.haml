@@ -5,8 +5,19 @@
     =t(:add_game)
 .row
   %table.table.games
+    = form_tag "", method: :get do
+      %tr
+        %th.week
+          = text_field_tag "filter[week]", @filters[:week], class: "form-control"
+        %th.corp_player
+          = player_select("filter[corp_id]", @filters[:corp_id])
+        %th.runner_player
+          = player_select("filter[runner_id]", @filters[:runner_id])
+        %th
+        %th
+          = submit_tag t(:filter), class: ["btn", "btn-primary"], name: nil
+          = link_to t(:clear_filters), games_path, class: ["btn", "btn-default"]
     %tr
-      %th #
       %th= t(:week)
       %th= t(:game_corp_player)
       %th= t(:game_runner_player)
@@ -14,7 +25,6 @@
       %th
     - @games.each do |game|
       %tr
-        %td= game.id
         %td= game.week
         %td{ class: game.player_result(game.corp_player) }= game.corp_player.name
         %td{ class: game.player_result(game.runner_player) }= game.runner_player.name

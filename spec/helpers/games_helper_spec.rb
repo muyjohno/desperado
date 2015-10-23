@@ -110,4 +110,28 @@ RSpec.describe GamesHelper, type: :helper do
       )
     end
   end
+
+  describe "#player_select" do
+    let!(:kate) { create(:player, name: "Kate") }
+
+    before do
+      create(:player, name: "Noise")
+      create(:player, name: "Gabe")
+    end
+
+    it "contains players" do
+      expect(helper.player_select("name")).to match(/Kate/)
+      expect(helper.player_select("name")).to match(/Noise/)
+      expect(helper.player_select("name")).to match(/Gabe/)
+    end
+
+    it "contains field name" do
+      expect(helper.player_select("my_lovely_field")).to match(/my_lovely_field/)
+    end
+
+    it "contains default" do
+      expect(helper.player_select("name")).not_to match(/selected="selected"/)
+      expect(helper.player_select("name", kate.id)).to match(/selected="selected"/)
+    end
+  end
 end

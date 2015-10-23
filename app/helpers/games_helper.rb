@@ -50,4 +50,11 @@ module GamesHelper
   def link_player(player)
     link_to(h(player.name), player_path(player)).html_safe
   end
+
+  def player_select(field_name, default = nil)
+    select_tag field_name,
+      options_from_collection_for_select(Player.all, "id", "name", default),
+      include_blank: true,
+      class: "form-control"
+  end
 end
