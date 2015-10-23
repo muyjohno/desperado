@@ -46,7 +46,7 @@ RSpec.describe "games/index.html.haml", type: :view do
 
   describe "filters" do
     before do
-      assign(:filters, { corp_id: geoff.id, week: 2 })
+      assign(:filters, corp_id: geoff.id, week: 2)
     end
 
     it "should display filter fields" do
@@ -60,7 +60,7 @@ RSpec.describe "games/index.html.haml", type: :view do
     it "should populate fields" do
       render
 
-      expect(rendered).to match(/option selected=\"selected\" value=\"#{geoff.id}\"/)
+      expect(rendered).to have_css("option[selected][value=\"#{geoff.id}\"]")
       expect(rendered).to have_css("input#filter_week[value=\"2\"]")
     end
   end

@@ -84,8 +84,10 @@ class GamesController < ApplicationController
   end
 
   def filter_params
-    params.fetch(:filter) do
-      return {}
-    end.permit(:week, :corp_id, :runner_id).reject { |_, v| v.blank? }
+    return {} unless params[:filter]
+
+    params[:filter]
+      .permit(:week, :corp_id, :runner_id)
+      .reject { |_, v| v.blank? }
   end
 end
