@@ -11,7 +11,7 @@ RSpec.describe GamesController, type: :controller do
 
     describe "GET index" do
       before do
-        21.times { create(:game) }
+        21.times { create(:game, corp: player1, week: 1) }
       end
 
       it "is successful" do
@@ -45,6 +45,64 @@ RSpec.describe GamesController, type: :controller do
           expect(assigns(:games)).not_to include(Game.last)
           expect(assigns(:games)).not_to include(Game.second)
           expect(assigns(:games)).to include(Game.first)
+        end
+      end
+
+      describe "filters" do
+        it "ignores empty filters" do
+          get :index, filter: { corp_id: "", runner_id: "", week: "" }
+
+          expect(assigns(:games).length).to eq(20)
+        end
+
+        it "assigns filters" do
+          get :index, filter: { corp_id: 1, runner_id: "", week: 2 }
+
+          expect(assigns(:filters)).to eq("corp_id" => "1", "week" => "2")
+        end
+
+        describe "filtering by player" do
+          let(:other_player) { Game.first.runner }
+
+          it "filters by player1" do
+            get :index, filter: { corp_id: player1.to_param }
+
+            expect(assigns(:games).length).to eq(20)
+          end
+
+          it "filters by another player" do
+            get :index, filter: { runner_id: other_player.to_param }
+
+            expect(assigns(:games).length).to eq(1)
+          end
+
+          it "returns empty set" do
+            get :index, filter: { corp_id: player2.to_param }
+
+            expect(assigns(:games).length).to eq(0)
+          end
+        end
+
+        describe "filtering by week" do
+          before { create(:game, week: 2) }
+
+          it "filters by week 1" do
+            get :index, filter: { week: 1 }
+
+            expect(assigns(:games).length).to eq(20)
+          end
+
+          it "filters by week 2" do
+            get :index, filter: { week: 2 }
+
+            expect(assigns(:games).length).to eq(1)
+          end
+
+          it "returns empty set" do
+            get :index, filter: { week: 3 }
+
+            expect(assigns(:games).length).to eq(0)
+          end
         end
       end
     end
