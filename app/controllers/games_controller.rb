@@ -2,7 +2,8 @@ class GamesController < ApplicationController
   before_action :authorise
 
   def index
-    @games = Game.all
+    @filters = filter_params
+    @games = Game.by_week.where(@filters).page(page_param).per(20)
   end
 
   def new
@@ -76,5 +77,17 @@ class GamesController < ApplicationController
 
   def find_game
     Game.find(params[:id])
+  end
+
+  def page_param
+    params[:page] || 1
+  end
+
+  def filter_params
+    return {} unless params[:filter]
+
+    params[:filter]
+      .permit(:week, :corp_id, :runner_id)
+      .reject { |_, v| v.blank? }
   end
 end

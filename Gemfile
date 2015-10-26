@@ -12,6 +12,7 @@ gem "bootstrap-sass"
 gem "redcarpet"
 gem "ranked-model"
 gem "jquery-ui-rails"
+gem "kaminari"
 
 group :development, :test do
   gem "web-console", "~> 2.0"

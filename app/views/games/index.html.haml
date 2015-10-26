@@ -1,28 +1,42 @@
 .row
-  %h2= t(:games)
-  = link_to new_game_path, class: ["btn", "btn-success"] do
-    %span.glyphicon.glyphicon-plus
-    =t(:add_game)
+  .col-xs-12.table-topper
+    %h2= t(:games)
+    = link_to new_game_path, class: ["btn", "btn-success"] do
+      %span.glyphicon.glyphicon-plus
+      = t(:add_game)
 .row
-  %table.table.games
-    %tr
-      %th #
-      %th= t(:week)
-      %th= t(:game_corp_player)
-      %th= t(:game_runner_player)
-      %th= t(:game_result)
-      %th
-    - @games.each do |game|
+  .col-xs-12
+    %table.table.games
+      = form_tag "", method: :get do
+        %tr
+          %th.week
+            = text_field_tag "filter[week]", @filters[:week], class: "form-control"
+          %th.corp_player
+            = player_select("filter[corp_id]", @filters[:corp_id])
+          %th.runner_player
+            = player_select("filter[runner_id]", @filters[:runner_id])
+          %th
+          %th
+            = submit_tag t(:filter), class: ["btn", "btn-primary"], name: nil
+            = link_to t(:clear_filters), games_path, class: ["btn", "btn-default"]
       %tr
-        %td= game.id
-        %td= game.week
-        %td{ class: game.player_result(game.corp_player) }= game.corp_player.name
-        %td{ class: game.player_result(game.runner_player) }= game.runner_player.name
-        %td= t(game.result)
-        %td
-          = link_to edit_game_path(game), class: ["btn", "btn-default"] do
-            %span.glyphicon.glyphicon-pencil
-            = t(:edit_game)
-          = link_to game_path(game), method: :delete, class: ["btn", "btn-danger"], data: { confirm: t(:confirm_delete_game) } do
-            %span.glyphicon.glyphicon-trash
-            = t(:delete_game)
+        %th= t(:week)
+        %th= t(:game_corp_player)
+        %th= t(:game_runner_player)
+        %th= t(:game_result)
+        %th
+      - @games.each do |game|
+        %tr
+          %td= game.week
+          %td{ class: game.player_result(game.corp_player) }= game.corp_player.name
+          %td{ class: game.player_result(game.runner_player) }= game.runner_player.name
+          %td= t(game.result)
+          %td
+            = link_to edit_game_path(game), class: ["btn", "btn-default"] do
+              %span.glyphicon.glyphicon-pencil
+              = t(:edit_game)
+            = link_to game_path(game), method: :delete, class: ["btn", "btn-danger"], data: { confirm: t(:confirm_delete_game) } do
+              %span.glyphicon.glyphicon-trash
+              = t(:delete_game)
+
+    = paginate @games

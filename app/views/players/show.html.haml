@@ -1,11 +1,14 @@
 .row
-  %h2= @player.name
-  = render "leaderboard/table", rows: [@leaderboard_row]
+  .col-xs-12
+    %h2= @player.name
+    = render "leaderboard/table", rows: [@leaderboard_row]
 .row
-  %h3= t(:games)
-  - @games.keys.sort.each do |week|
-    %h4= t(:week_number, week: week) if week > 0
-    = render "games/list", games: @games[week], player: @player
+  .col-xs-12
+    %h3= t(:games)
+    - @games.keys.sort.each do |week|
+      %h4= t(:week_number, week: week) if week > 0
+      = render "games/list", games: @games[week], player: @player
 .row
-  %h3= t(:achievements)
-  = render "achievements/grid", achievements: @achievements, player: @player
+  .col-xs-12
+    %h3= t(:achievements)
+    = render "achievements/grid", achievements: @achievements, player: @player

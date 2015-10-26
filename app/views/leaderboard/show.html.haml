@@ -1,12 +1,16 @@
 - if @content
   .row
-    = raw @content
+    .col-xs-12
+      = raw @content
 - if @leaderboard.count > 0
   .row
-    = render "table", rows: @leaderboard
+    .col-xs-12
+      = render "table", rows: @leaderboard
   .row
-    %h3= t(:recent_games)
-    = render "games/list", games: @recent_games
+    .col-xs-12
+      %h3= t(:recent_games)
+      = render "games/list", games: @recent_games
 - else
   .row
-    = t(:no_games)
+    .col-xs-12
+      = t(:no_games)
