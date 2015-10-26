@@ -1,26 +1,29 @@
 .row
-  %h2= t(:players)
-  = form_for :player do |f|
-    = f.text_field :name
-    = button_tag class: ["btn", "btn-success"] do
-      %span.glyphicon.glyphicon-plus
-      = t(:add_player)
+  .col-xs-12
+    %h2= t(:players)
+    = form_for :player, html: { class: ["form-inline", "table-topper"] } do |f|
+      .form-group
+        = f.text_field :name, class: "form-control", placeholder: t(:player_name)
+        = button_tag class: ["btn", "btn-success"] do
+          %span.glyphicon.glyphicon-plus
+          = t(:add_player)
 .row
-  %table.table
-    %tr
-      %th #
-      %th= t(:player_name)
-      %th= t(:player_notes)
-      %th
-    - @players.each do |player|
+  .col-xs-12
+    %table.table
       %tr
-        %td= player.id
-        %td= player.name
-        %td= player.notes
-        %td
-          = link_to edit_player_path(player), class: ["btn", "btn-default"] do
-            %span.glyphicon.glyphicon-pencil
-            = t(:edit_player)
-          = link_to player_path(player), method: :delete, class: ["btn", "btn-danger"], data: { confirm: t(:confirm_delete_player, name: player.name) } do
-            %span.glyphicon.glyphicon-trash
-            = t(:delete_player)
+        %th #
+        %th= t(:player_name)
+        %th= t(:player_notes)
+        %th
+      - @players.each do |player|
+        %tr
+          %td= player.id
+          %td= player.name
+          %td= player.notes
+          %td
+            = link_to edit_player_path(player), class: ["btn", "btn-default"] do
+              %span.glyphicon.glyphicon-pencil
+              = t(:edit_player)
+            = link_to player_path(player), method: :delete, class: ["btn", "btn-danger"], data: { confirm: t(:confirm_delete_player, name: player.name) } do
+              %span.glyphicon.glyphicon-trash
+              = t(:delete_player)
