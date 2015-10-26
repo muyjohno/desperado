@@ -8,13 +8,14 @@
   %body{ class: theme }
     .container
       .row
-        = render "layouts/navigation"
-        .page-header
-          %h1= @league.display_name
-        - flash.each do |name, msg|
-          %p{ id: "flash#{name}", class: ["alert", "alert-warning", "alert-dismissible"] }
-            = msg
-            %button.close{ "data-dismiss" => :alert } &times;
+        .col-xs-12
+          = render "layouts/navigation"
+          .page-header
+            %h1= @league.display_name
+          - flash.each do |name, msg|
+            %p{ id: "flash#{name}", class: ["alert", "alert-warning", "alert-dismissible"] }
+              = msg
+              %button.close{ "data-dismiss" => :alert } &times;
       = yield
     .panel.footer
       .panel-body

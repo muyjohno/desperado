@@ -1,6 +1,7 @@
 .row
-  = render "league/navigation", active: :tiebreakers
-  %h2= t(:edit_tiebreakers)
+  .col-xs-12
+    = render "league/navigation", active: :tiebreakers
+    %h2= t(:edit_tiebreakers)
 .row
   .col-sm-6
     %table.table.table-bordered.table-striped#sortable-tiebreakers
@@ -12,7 +13,7 @@
             = link_to tiebreaker_path(tiebreaker), method: :delete do
               %span.glyphicon.glyphicon-trash
   .col-sm-6
-    = form_for :tiebreaker, url: tiebreakers_path do |f|
+    = form_for :tiebreaker, html: { class: "form-horizontal" }, url: tiebreakers_path do |f|
       .form-group
         = f.label :tiebreaker, t(:tiebreaker), class: ["col-sm-2", "control-label"]
         .col-sm-10
