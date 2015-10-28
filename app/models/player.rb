@@ -13,6 +13,8 @@ class Player < ActiveRecord::Base
   has_many :earned_achievements, dependent: :destroy
   has_many :achievements, through: :earned_achievements
 
+  default_scope { order("name ASC") }
+
   def games
     Game.where("corp_id = ? OR runner_id = ?", id, id)
   end

@@ -98,4 +98,17 @@ RSpec.describe Player, type: :model do
       expect(player.earned?(unearned)).to eq(false)
     end
   end
+
+  describe "order" do
+    let!(:alan) { create(:player, name: "Alan") }
+    let!(:zuzanna) { create(:player, name: "Zuzanna") }
+    let!(:brian) { create(:player, name: "Brian") }
+    let(:all) { Player.all }
+
+    it "defaults order to alphabetical by name" do
+      expect(all.first).to eq(alan)
+      expect(all.second).to eq(brian)
+      expect(all.last).to eq(zuzanna)
+    end
+  end
 end
