@@ -1,0 +1,114 @@
+- title: Three Scoops
+  side: corp
+  points: 1
+  description: Install three pieces of ICE on the same server in one turn.
+---
+- title: Get What You Pay For
+  side: corp
+  points: 1
+  description: Pay 10 or more credits to rez a piece of ICE.
+---
+- title: Influence Police
+  side: corp
+  points: 1
+  description: Trash an out-of-faction Runner card.
+---
+- title: Area Codes
+  side: corp
+  points: 1
+  description: Finish your turn with three different Region upgrades rezzed.
+---
+- title: Feel the Power
+  side: corp
+  points: 1
+  description: Finish your turn with six or more power counters on one card.
+---
+- title: Selective Memory
+  side: corp
+  points: 2
+  description: Win a game as Chronos Protocol.
+---
+- title: Remote Control
+  side: corp
+  points: 2
+  description: Win with eight or more remotes.
+---
+- title: Small Steps
+  side: corp
+  points: 2
+  description: Win by only scoring 1-point agendas.
+---
+- title: 'Hard Mode: Corp'
+  side: corp
+  points: 2
+  description: Win without triggering or using your ID ability.
+---
+- title: Friends Don't Let Friends Astro-train
+  side: corp
+  points: 2
+  description: Win as NBN without an Astroscript Pilot Program in your deck.
+---
+- title: CAPS LOCK
+  side: corp
+  points: 3
+  description: Win as NEXT Design, GRNDL and SYNC.
+---
+- title: New Challengers Appear
+  side: runner
+  points: 3
+  description: Win as Adam, Apex and Sunny.
+---
+- title: Honour Among Criminals
+  side: runner
+  points: 2
+  description: Win as Criminal without an Account Siphon in your deck.
+---
+- title: 'Hard Mode: Runner'
+  side: runner
+  points: 2
+  description: Win without triggering or using your ID ability.
+---
+- title: Self Improvement
+  side: runner
+  points: 2
+  description: Win with three different Cybernetics or Genetics installed.
+---
+- title: Hard Where?
+  side: runner
+  points: 2
+  description: Win with no hardware installed.
+---
+- title: Investment Round
+  side: runner
+  points: 2
+  description: Win a game as Laramy Fisk.
+---
+- title: Deep Dive
+  side: runner
+  points: 1
+  description: Access five or more different cards from R&D in one turn.
+---
+- title: Me And This Army
+  side: runner
+  points: 1
+  description: Finish your turn with five or more connections installed.
+---
+- title: Firestarter
+  side: runner
+  points: 1
+  description: Trash three Corp cards in one turn.
+---
+- title: Jackpot
+  side: runner
+  points: 1
+  description: Gain 10 or more credits in one turn.
+---
+- title: Look Before You Leap
+  side: runner
+  points: 1
+  description: Expose or reveal a card and then run on that server in the same turn.
+---
+- title: Run Broke
+  side: runner
+  points: 1
+  description: Initiate a run with no credits in your pool.

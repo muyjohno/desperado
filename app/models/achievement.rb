@@ -5,4 +5,9 @@ class Achievement < ActiveRecord::Base
   validates :title, :side, :points, presence: true
 
   enum side: %w(corp runner)
+
+  def to_s
+    "#{self.class.name} [#{self.side}/#{self.points}] '#{self.title}' / '#{self.description}'"
+  end
+
 end
