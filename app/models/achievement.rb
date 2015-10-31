@@ -7,7 +7,6 @@ class Achievement < ActiveRecord::Base
   enum side: %w(corp runner)
 
   def to_s
-    "#{self.class.name} [#{self.side}/#{self.points}] '#{self.title}' / '#{self.description}'"
+    "#{self.class.name} [#{side}/#{points}] '#{title}' / '#{description}'"
   end
-
 end

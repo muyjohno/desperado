@@ -41,10 +41,10 @@ RSpec.describe Achievement, type: :model do
 
   describe "to_s" do
     it "is well-formed" do
-      subject.side = 'corp'
-      subject.title = 'Membrane'
+      subject.side = "corp"
+      subject.title = "Membrane"
       subject.points = 2
-      subject.description = 'Whatever'
+      subject.description = "Whatever"
 
       expect(subject.to_s).to eq "Achievement [corp/2] 'Membrane' / 'Whatever'"
     end
