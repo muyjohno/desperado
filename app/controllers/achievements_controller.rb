@@ -38,7 +38,7 @@ class AchievementsController < ApplicationController
 
   def destroy
     @achievement = find_achievement
-    redirect_to achievements_path,
+    redirect_to manage_achievements_path,
       notice: @achievement.destroy ? t(:deleted_achievement) : t(:delete_achievement_failed)
   end
 

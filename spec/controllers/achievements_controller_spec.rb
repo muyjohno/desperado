@@ -130,6 +130,7 @@ RSpec.describe AchievementsController, type: :controller do
         delete :destroy, id: achievement_to_delete.id
 
         expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(manage_achievements_path)
         expect(flash[:notice]).to eq(I18n.t(:deleted_achievement))
       end
     end
