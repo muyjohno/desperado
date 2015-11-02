@@ -135,6 +135,7 @@ en:
   theme: "Theme"
   theme_default: "Default (blank)"
   theme_classic: "Classic"
+  theme_oxford: "Oxford"
 
   views:
     pagination:
