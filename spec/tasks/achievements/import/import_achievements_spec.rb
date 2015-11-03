@@ -14,9 +14,9 @@ describe "desperado:import_achievements" do
   end
 
   it "does not import any achievements when even one input is invalid." do
-    expect {
+    expect do
       subject.invoke data_file("with_one_invalid_achievement.yml")
-    }.to raise_error(NameError)
+    end.to raise_error(NameError)
 
     expect(Achievement.count).to eq 0
   end

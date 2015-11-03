@@ -3,16 +3,16 @@ require "rake"
 ##
 # Define a shared context that loads our "desperado" tasks.
 #
-# {Link Test Rake Tasks Like a BOSS}[https://robots.thoughtbot.com/test-rake-tasks-like-a-boss]
+# See https://robots.thoughtbot.com/test-rake-tasks-like-a-boss
 #
-shared_context 'desperado' do
-  let(:rake)      { Rake::Application.new }
+shared_context "desperado" do
+  let(:rake) { Rake::Application.new }
   let(:task_name) { self.class.top_level_description }
   let(:task_path) { "lib/tasks/desperado" }
-  subject         { rake[task_name] }
+  subject { rake[task_name] }
 
   def loaded_files
-    $".reject {|file| file == Rails.root.join("#{task_path}.rake").to_s }
+    $".reject { |file| file == Rails.root.join("#{task_path}.rake").to_s }
   end
 
   before do

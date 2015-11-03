@@ -1,6 +1,6 @@
 namespace :desperado do
 
-  desc 'Import achievements into the DB.'
+  desc "Import achievements into the DB."
   task :import_achievements, [:data_file] => :environment do |_, args|
     File.open(args.data_file, "r") do |data|
       achievements = Psych.load_stream data
