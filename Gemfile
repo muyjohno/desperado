@@ -23,6 +23,8 @@ group :development, :test do
   gem "pry-rails"
   gem "database_cleaner"
   gem "sqlite3"
+  gem "guard"
+  gem "guard-livereload"
 end
 
 group :production do
