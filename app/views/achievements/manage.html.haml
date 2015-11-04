@@ -1,18 +1,18 @@
 .row
   .col-xs-12.table-topper
     %h2= t(:achievements)
-    = link_to new_achievement_path, class: ["btn", "btn-success"] do
-      %span.glyphicon.glyphicon-plus
-      = t(:add_achievement)
 .row
   .col-xs-12
-    %table.table.achievements
+    %table.table.achievements.table-condensed
       %tr
         %th #
         %th= t(:achievement_title)
         %th= t(:achievement_side)
         %th= t(:achievement_points)
         %th
+          = link_to new_achievement_path, class: ["btn", "btn-success"] do
+            %span.glyphicon.glyphicon-plus
+            = t(:add_achievement)
       - @achievements.each do |achievement|
         %tr
           %td= achievement.id
@@ -20,9 +20,10 @@
           %td= t(achievement.side)
           %td= achievement.points
           %td
-            = link_to edit_achievement_path(achievement), class: ["btn", "btn-default"] do
+            = link_to edit_achievement_path(achievement), class: ["btn", "btn-primary"] do
               %span.glyphicon.glyphicon-pencil
               = t(:edit_achievement)
-            = link_to achievement_path(achievement), method: :delete, class: ["btn", "btn-danger"], data: { confirm: t(:confirm_delete_achievement, title: achievement.title) } do
+            = link_to achievement_path(achievement), method: :delete, class: ["btn"],
+                      data: { confirm: t(:confirm_delete_achievement, title: achievement.title) } do
               %span.glyphicon.glyphicon-trash
               = t(:delete_achievement)

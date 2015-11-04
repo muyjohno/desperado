@@ -10,17 +10,17 @@
         = f.text_area :description, class: "form-control"
     .form-group
       = f.label :points, t(:achievement_points), class: ["col-sm-2", "control-label"]
-      .col-sm-10
-        = f.text_field :points, class: "form-control"
+      .col-sm-2
+        = f.text_field :points, class: "form-control", type: "number", min: 1, max: 3, size: 5
     .form-group
       = f.label :side, t(:achievement_side), class: ["col-sm-2", "control-label"]
-      .col-sm-10
+      .col-sm-2
         = f.select :side, side_options, {}, class: "form-control"
     .form-group
       .col-sm-offset-2.col-sm-10
-        = button_tag class: ["btn", "btn-success"] do
-          %span.glyphicon.glyphicon-pencil
-          = t(:save_achievement)
-        %a.btn.btn-danger{ href: achievements_path }
+        %a.btn{ href: manage_achievements_path }
           %span.glyphicon.glyphicon-remove
           = t(:cancel)
+        = button_tag class: ["btn", "btn-primary"] do
+          %span.glyphicon.glyphicon-pencil
+          = t(:save_achievement)
