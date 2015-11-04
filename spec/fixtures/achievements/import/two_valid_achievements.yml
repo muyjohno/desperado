@@ -1,0 +1,9 @@
+- title: First
+  side: runner
+  points: 1
+  description: First
+---
+- title: Second
+  side: corp
+  points: 2
+  description: Second
