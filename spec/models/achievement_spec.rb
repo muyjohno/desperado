@@ -39,6 +39,17 @@ RSpec.describe Achievement, type: :model do
     end
   end
 
+  describe "to_s" do
+    it "is well-formed" do
+      subject.side = "corp"
+      subject.title = "Membrane"
+      subject.points = 2
+      subject.description = "Whatever"
+
+      expect(subject.to_s).to eq "Achievement [corp/2] 'Membrane' / 'Whatever'"
+    end
+  end
+
   describe "player associations" do
     let(:player) { create(:player) }
     let(:game) { create(:game, subject.side.to_s => player) }
