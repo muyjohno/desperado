@@ -22,6 +22,6 @@ describe "desperado:import_achievements" do
   end
 
   def data_file(path)
-    File.join("#{File.dirname(__FILE__)}", path)
+    File.join("#{Rails.root}/spec/fixtures/achievements/import", path)
   end
 end
