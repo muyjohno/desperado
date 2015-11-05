@@ -8,4 +8,4 @@
           =t(achievement.side)
           ="(#{pluralize(achievement.points, t(:point))})"
           %br
-          =achievement.description
+          =markdown(achievement.description)
