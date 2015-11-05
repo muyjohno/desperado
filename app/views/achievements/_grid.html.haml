@@ -4,10 +4,10 @@
     .col-md-4.achievement
       .panel.panel-default{class: achievement_class(achievement, player)}
         .panel-heading
-          =achievement.title
+          = achievement.title
           .points.pull-right{title: t("achievement_points")}
-            =achievement.points
+            = achievement.points
           .side.pull-right
-            =t(achievement.side)
+            = t(achievement.side)
         .panel-body
-          =achievement.description
+          = achievement.description
