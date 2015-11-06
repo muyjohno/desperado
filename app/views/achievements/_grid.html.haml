@@ -1,11 +1,13 @@
 - player ||= nil
 .row.achievement_grid
   - achievements.each do |achievement|
-    .col-md-3.achievement
-      .panel.panel-default{class: achievement_class(achievement, player)}
-        .panel-heading=achievement.title
+    .col-md-4.achievement
+      .panel.panel-default{ class: achievement_class(achievement, player) }
+        .panel-heading
+          = achievement.title
+          .points.pull-right{ title: t(:achievement_points) }
+            = achievement.points
+          .side.pull-right
+            = t(achievement.side)
         .panel-body.description
-          = t(achievement.side)
-          = "(#{pluralize(achievement.points, t(:point))})"
-          %br
           = raw markdown(achievement.description)
