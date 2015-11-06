@@ -11,4 +11,15 @@ RSpec.describe "achievements/index.html.haml", type: :view do
     expect(rendered).to have_css(".achievement", count: 3)
     expect(rendered).to have_content("Achievement Title", count: 3)
   end
+
+  it "should transform achievement with Markdown in description" do
+    create(:achievement,
+            title: "Markdown'd",
+            description: "**Johno Rocks**")
+    render
+
+    xpath = "//div[contains(@class, 'description')]" \
+            "/*/strong[contains(., 'Johno Rocks')]"
+    expect(rendered).to have_xpath(xpath)
+  end
 end
