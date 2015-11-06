@@ -2,10 +2,10 @@
 .row.achievement_grid
   - achievements.each do |achievement|
     .col-md-4.achievement
-      .panel.panel-default{class: achievement_class(achievement, player)}
+      .panel.panel-default{ class: achievement_class(achievement, player) }
         .panel-heading
           = achievement.title
-          .points.pull-right{title: t(:achievement_points)}
+          .points.pull-right{ title: t(:achievement_points) }
             = achievement.points
           .side.pull-right
             = t(achievement.side)
