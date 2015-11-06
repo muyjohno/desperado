@@ -24,7 +24,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe "#markdown" do
     context "converts to markdown" do
       it "when given valid markdown" do
-        expect(helper.markdown("_foo_")).to eq("<p><em>foo</em></p>\n")
+        expect(helper.markdown("_foo_")).to match("<em>")
       end
     end
   end
