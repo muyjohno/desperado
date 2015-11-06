@@ -14,8 +14,8 @@ RSpec.describe "achievements/index.html.haml", type: :view do
 
   it "should transform achievement with Markdown in description" do
     create(:achievement,
-           title: "Markdown'd",
-           description: "**Johno Rocks**")
+            title: "Markdown'd",
+            description: "**Johno Rocks**")
     render
 
     xpath = "//div[contains(@class, 'description')]" \
