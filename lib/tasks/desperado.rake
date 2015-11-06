@@ -7,7 +7,9 @@ namespace :desperado do
       Achievement.transaction do
         Achievement.create! achievements
       end
-      puts "Imported #{achievements.length} achievements."
+      unless Rails.env.test?
+        puts "Imported #{achievements.length} achievements."
+      end
     end
   end
 end
