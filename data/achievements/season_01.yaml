@@ -26,7 +26,8 @@
 - title: Selective Memory
   side: corp
   points: 2
-  description: Win a game as Chronos Protocol.
+  description: "
+    Win a game as [Chronos Protocol](http://netrunnerdb.com/en/card/08111)."
 ---
 - title: Remote Control
   side: corp
@@ -46,22 +47,34 @@
 - title: Friends Don't Let Friends Astro-train
   side: corp
   points: 2
-  description: Win as NBN without an Astroscript Pilot Program in your deck.
+  description: "
+    Win as NBN without an
+    [Astroscript Pilot Program](http://netrunnerdb.com/en/card/01081)
+    in your deck."
 ---
 - title: CAPS LOCK
   side: corp
   points: 3
-  description: Win as NEXT Design, GRNDL and SYNC.
+  description: "
+    Win as [NEXT Design](http://netrunnerdb.com/en/card/03003),
+    [GRNDL](http://netrunnerdb.com/en/card/04097),
+    and [SYNC](http://netrunnerdb.com/en/card/09001)."
 ---
 - title: New Challengers Appear
   side: runner
   points: 3
-  description: Win as Adam, Apex and Sunny.
+  description: "
+    Win as [Adam](http://netrunnerdb.com/en/card/09037),
+    [Apex](http://netrunnerdb.com/en/card/09029),
+    and [Sunny](http://netrunnerdb.com/en/card/09045)."
 ---
 - title: Honour Among Criminals
   side: runner
   points: 2
-  description: Win as Criminal without an Account Siphon in your deck.
+  description: "
+    Win as Criminal without an
+    [Account Siphon](http://netrunnerdb.com/en/card/01018)
+    in your deck."
 ---
 - title: 'Hard Mode: Runner'
   side: runner
@@ -81,7 +94,8 @@
 - title: Investment Round
   side: runner
   points: 2
-  description: Win a game as Laramy Fisk.
+  description: "
+    Win a game as [Laramy Fisk](http://netrunnerdb.com/en/card/08104)."
 ---
 - title: Deep Dive
   side: runner
@@ -106,7 +120,8 @@
 - title: Look Before You Leap
   side: runner
   points: 1
-  description: Expose or reveal a card and then run on that server in the same turn.
+  description: "
+    Expose or reveal a card and then run on that server in the same turn."
 ---
 - title: Run Broke
   side: runner
